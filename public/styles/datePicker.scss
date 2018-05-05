@@ -1,0 +1,97 @@
+/////////////////////////////////////
+////////////// IMPORTS //////////////
+/////////////////////////////////////
+
+@import "mixins";
+@import "variables";
+
+
+
+
+
+/////////////////////////////////////////////////////
+//////////////////MY STYLES
+/////////////////////////////////////////////////////
+
+//widget geral
+.ui-widget.ui-widget-content {
+    border: 0 solid #fff;
+    font-family: $fonteCorpo;
+}
+
+.ui-datepicker-inline {
+    margin: 50px auto 10px;
+    width: 90%;
+    border: none;
+}
+
+// cabeçalho
+.ui-datepicker-header, .ui-datepicker-title {
+    background-color: $turquesa;
+}
+
+//bordas cabeçalho
+.ui-corner-all {
+    border-radius: 3px 3px 0 0;
+}
+
+//cabeçalho mês / ano
+span.ui-datepicker-month, .ui-datepicker-year {
+    color: #fff;
+    font-size: 1.3em;    
+    font-weight: 400;
+}
+
+//ícones de avançar e retroceder mês
+.ui-icon {
+    -webkit-filter: brightness(10);
+            filter: brightness(10);
+    -webkit-transform: scale(1.25, 1.25);
+            transform: scale(1.25, 1.25);
+}
+
+//div onde está inserido o ícone de avançar e retroceder mês
+.ui-datepicker-prev, .ui-datepicker-next {
+    padding: 0 5%;
+    padding-top: 5px;
+}
+
+//ícone de avançar mês
+.ui-datepicker-next span {
+    background: rgba(255, 255, 255, 0) url('/img/caretRight.png') no-repeat left !important;
+    background-size: 7px !important;
+}
+
+//ícone de retroceder mês
+.ui-datepicker-prev span {
+    background: rgba(255, 255, 255, 0) url('/img/caretLeft.png') no-repeat left !important;
+    background-size: 7px !important;
+}
+
+//div onde está inserido o ícone de avançar e retroceder mês (hover)
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover {
+    background-color: $turquesa;
+    border: 0 solid #fff;
+}
+
+
+
+// links (para tirar a borda ao redor dos dias)
+a.ui-state-default {
+    text-align: center !important;
+    border: 0px solid #fff !important;
+}
+
+/* .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+   // background-color: $menuN2;
+} */
+
+//data atual
+.ui-state-highlight {
+    background-color: $turquesa !important;
+    color: #fff !important;
+}
+
+.ui-state-active {
+    background-color: $cinzaQuente !important;
+}

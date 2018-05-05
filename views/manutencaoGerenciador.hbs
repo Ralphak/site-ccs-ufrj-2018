@@ -1,0 +1,62 @@
+{{> header}}
+{{> topBarDesktop}}
+<div id="overlay" class="overlay hidden opacidade-zero"></div>
+<main class="deslocar manutencao-gerenciador">
+    <div id="div-demandas">
+        <h1>Demandas de Serviço</h1>
+        <div class="refinar-busca-div display-only">
+            <h3>Refine sua busca</h3>
+            <i class="icone-refinar-busca fa fa-caret-down"></i>
+        </div>
+        <div class="filtros-ds filtro-resultados">
+            <div class="formulario">
+                <div class="filtro-ordenacao-ds">
+                    <p>Ordenação das demandas</p>
+                    <br>
+                    <div>
+                        <input type="radio" name="filtro" id="radio1" value="antigasPrimeiro" checked>
+                        <label for="radio1"><span></span>antigas primeiro</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="filtro" id="radio2" value="recentesPrimeiro">
+                        <label for="radio2"><span></span>recentes primeiro</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="filtro" id="checkbox1" value="prioridadesPrimeiro">
+                        <label for="checkbox1"><span></span>prioridades primeiro</label>
+                    </div>
+                </div>
+                <div class="div-ano-ds">
+                    <label for="filtro-ano-ds">Exibir demandas:</label>
+                    <select name="filtro-ano-ds" id="filtro-ano-ds">
+                    </select>
+                </div>
+                
+                <div></div>
+            </div>
+        </div>
+        <h2 class='demandas-cabecalho'>Demandas em curso</h2>
+        <div class='filtrar-demandas formulario'>
+            <input type="text" class="filtrar-demandas--input" >
+            <span class='filtrar-demandas--btn'>buscar</span>
+            <i class="fa fa-times-circle limpar-busca"></i>
+        </div>
+        <div class="div-lista-ds card-container display-only">
+            <div class="lista-ds card-div">
+            </div>
+        </div>
+        <div id="detalhes-demanda"></div>
+    </div>    
+    <div id="div-estatisticas" class="janela">
+        <h2 class="header">Estatísticas manutenção</h2>
+        <div class="estatisticas-container"></div>
+    </div>
+</main>
+<span id="btn-estatisticas" class=" display-only fa-stack fa-lg">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-bar-chart fa-stack-1x fa-inverse"></i>
+</span>
+
+<script src="/dist/scripts/manutencao.min.js"></script>
+<link rel="stylesheet" href="/dist/styles/manutencao.min.css">
+{{> footer}}

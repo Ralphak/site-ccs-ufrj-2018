@@ -1,0 +1,44 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="localizar-pessoas deslocar">
+    <div class="pessoas-container">
+        <h1>Localizar contatos</h1>
+
+        <form action="/recuperarContatos" method="get" id="localizar-contato" class="formulario" accept-charset="utf-8">
+            <div>
+                <label for="query"><p>Busque por nome, vínculo e/ou cargo. Deixe em branco para busca geral.</p></label>
+                <input type="text" name="query" id="query" placeholder="termo de busca" autofocus>
+            </div>
+            <div id="permissao">
+                <p>Permissões de acesso<p>
+                <div>
+                    <input type="checkbox" name="permissao" id="reservarAuditorios">
+                    <label for="reservarAuditorios"><span></span>reservar auditórios</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="permissao" id="analisarReservaAuditorios">
+                    <label for="analisarReservaAuditorios"><span></span>analisar reserva de auditórios</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="permissao" id="gerenteSistema">
+                    <label for="gerenteSistema"><span></span>gerente do sistema</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="permissao" id="chefeManutencao">
+                    <label for="chefeManutencao"><span></span>chamados de manutenção</label>
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" id="btn-submit" value="localizar">
+            </div>
+        </form>
+        <div id="resultados">
+
+        </div>
+    </div>
+
+</main>
+<script src="/dist/scripts/contatos.min.js"></script>
+{{> footer}}

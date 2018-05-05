@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+
+        {{!-- analytics -- comentar em desenvolvimento, descomentar em produção --}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111452117-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111452117-1');
+        </script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+        <meta property="creator.productor" content="http://estruturaorganizacional.dados.gov.br/id/unidade-organizacional/426">
+        <meta name="theme-color" content="#2c3531">
+        <meta name="author" content="Centro de Ciências da Saúde">        
+        <meta name="description" content="O Centro de Ciências da Saúde (CCS) da Universidade Federal do Rio de Janeiro (UFRJ) compõe unidades de ensino, pesquisa e extensão desta universidade. ">        
+        {{#if conteudo}}
+            <meta property="og:url"           content="http://www.ccs.ufrj.br{{url}}">
+            <meta property="og:type"          content="website">
+            <meta property="og:title"         content="{{conteudo.titulo}}">
+            <meta property="og:description"   content="{{conteudo.resumo}}">
+        {{/if}}
+        {{#if img}}           
+            <meta property="og:image"         content="http://www.ccs.ufrj.br/img{{url}}.jpg">
+        {{/if}}
+
+        <!--TinyMCE-->
+        {{#if tinyMCE}}
+            <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=i3b66hnqydhhgvxx4xiurexe30gsujzxql0qi48kafn6f96l"></script>
+            <script>
+                /*adicionando botão para inserir a tag de imagens automaticamente*/
+                tinymce.PluginManager.add('minhasFuncoes', function(editor, url) {
+                    editor.addButton('inserirImagem', {
+                        text: 'Inserir Imagem',
+                        icon: false,
+                        onclick: function() {
+                            editor.insertContent("{imagem}");
+
+                        }
+                    });
+                    editor.addButton('inserirLegenda', {
+                        text: 'Inserir Legenda',
+                        icon: false,
+                        onclick: function() {
+                            editor.insertContent("{legenda}texto da legenda{/legenda}");
+
+                        }
+                    });
+                });
+                tinymce.init({
+                    selector:'textarea.tinyMCE',
+                    plugins: ["link", "paste","minhasFuncoes"],
+                    toolbar: "paste | link | bold | italic | undo redo | styleselect |  link image | inserirImagem | inserirLegenda",
+                    menubar: ["insert", "edit"],
+                    default_link_target: "_blank",
+                    branding: false,
+                    height: "400",
+                    entity_encoding : "raw",                    
+                    paste_preprocess: function(plugin, args) {
+                        console.log(args.content);
+                        //args.content += ' preprocess';
+                    }
+
+                });
+            </script>
+        {{/if}}
+        
+        {{!-- comentar o script do font-awesome em produção, descomentar em desenvolvimento --}}
+        {{!-- <script src="https://use.fontawesome.com/60e0586006.js"></script> --}}
+
+        {{!-- baixei as fontes do endereço para uso local. Manter comentado. Descomentar apenas em caso de problemas com a exibição das fontes --}}
+        {{!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed:700" rel="stylesheet"> --}}
+
+        <link rel="stylesheet" href="/dist/styles/styles.min.css">
+
+        <!--favicon-->
+        <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/img/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+        <title>Centro de Ciências da Saúde</title>
+    </head>
+    <body>
+        <div id="mensagens-genericas" class="janela opacidade-zero hidden"></div>
+        <div id="overlay" class="hidden opacidade-zero"></div>
+        <div id="aviso-campo-invalido" class="hidden opacidade-zero">
+        <i class="fa fa-exclamation-triangle"></i>
+        <i class="fa fa-caret-up"></i>
+        <p>Preencha este campo obrigatório</p>
+    </div>
+        <div class ="wrapper"> <!--div que envolve todo o conteúdo do body, criado para que o overflow do conteúdo que ocorre quando o menu abre funcione em portáteis-->
+        <a class="ancora" id="anchor-top"></a>
+        <header>
+            <div class="barraBrasil-e-topbar">
+                <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+                    <ul id="menu-barra-temp" style="list-style:none;">
+                        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED"><a target="_blank" href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a></li>
+                        <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
+                    </ul>
+                </div>
+                <div class="top-bar">
+                    <div class="marca-e-logotipo">
+                        <a target="_blank" href="http://ufrj.br"><img class="minerva" src="/img/minerva.png"></a>
+                        <div class="svg-wrap">                            
+                            <a href="/">                                
+                                <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                <svg id="marca" version="1.1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 841.9 595.3"
+                                     enable-background="new 0 0 841.9 595.3" xml:space="preserve">
+                                <g id="Camada_1">
+                                    <g>
+                                        <g>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#1DA855" d="M246.7,121.9l-7.2,12.6C158.2,106.8,50.7,133,51,227.3
+                                                c0,92.3,96.4,121.4,188.1,91l7.1,12.1c-102.1,34-219.4-0.1-216.3-103C33,124.9,155.5,89.2,246.7,121.9z"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#12844D" d="M329.3,108.9c22.4,0,56,3,74.9,10.2l-9.5,33.3
+                                                c-66.7-22.7-161.4-6.5-161.4,72.2c0,78.6,89.1,93.5,160.3,73.7l5.9,32.9c-118.4,25.8-215.3-5.4-215.3-106.6
+                                                C184.3,160.7,242.5,109.7,329.3,108.9z"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#285D3C" d="M554.3,168.9c6.2-16.2,12.4-32.4,18.6-48.7
+                                                c-33.5-9.2-41.1-13.5-83.2-13.5c-48.9,0-101.9,31.2-103.5,64.1c-4.5,92.7,130.7,65.2,122.7,104.6c-5.1,25.4-78.1,13-111,0
+                                                c-5.1,15-9.1,34.3-14.1,49.2c19.4,10.5,57.6,17.1,87.8,15.6c51.3-2.6,106.9-16.9,110.2-65c6.3-90.4-122.8-65.8-122.8-103.4
+                                                C459.3,150.5,530.9,155.5,554.3,168.9z"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M502.4,322.7h34l-12.2,58.8c-1.2,5.8-3.2,11.2-6.1,16.4
+                                                c-2.9,5.2-6.8,9.8-11.4,13.6c-4.2,3.5-8.8,6.4-14,8.2c-6.9,2.4-14.4,3.3-21.7,3.3c-5,0-10-0.4-15-1c-4.7-0.6-9.6-1.7-13.7-4.1
+                                                c-3.7-2.2-6.7-5.3-9.1-8.9c-2.4-3.6-3.9-7.6-4.3-11.9c-0.5-5.5-0.5-11.2,0.7-16.6l12-57.8h34l-12.5,60.1
+                                                c-0.7,3.2-0.9,7.1,1.3,9.9c2.1,2.7,5.6,3.3,8.9,3.3c4.1,0,7.8-1,11-3.7c3.3-2.7,5-6.5,5.8-10.6L502.4,322.7L502.4,322.7z
+                                                 M579.4,347.8h42.4l5.2-25.2h-76.6L530,421.2h34.2l7.9-38.2h36.2l5-24h-36.2L579.4,347.8L579.4,347.8z M698.1,378.1
+                                                c0.4,0.3,0.8,0.6,1.2,0.9c1.6,1.3,3.1,3.8,4.1,5.5c1.2,1.9,2.4,4.2,3.1,6.4l9.4,30.4h-37.9l-10.1-30.3c-0.5-1.5-1.7-5-3-6
+                                                c-1.4-1.2-3.2-1.6-5-1.6h-0.5l-7.9,37.9h-34.2l20.5-98.6H688c6.4,0,14.7,0.3,20.8,2.4c5,1.8,8.8,5,11.1,9.8
+                                                c2.6,5.2,2.6,11.2,1.4,16.8c-1.1,5.3-3.2,10.2-6.6,14.5c-3.2,4.1-7.2,7.4-11.8,9.8C701.4,376.8,699.8,377.5,698.1,378.1
+                                                L698.1,378.1z M664.2,360.5h9c2,0,5.4-0.8,7.4-1.2c1.6-0.3,2.9-1.1,4-2.2c1.2-1.2,1.9-2.5,2.3-4.2c0.3-1.6,0.4-3.4-0.8-4.6
+                                                c-1.5-1.5-6.5-1.7-8.4-1.7H667L664.2,360.5L664.2,360.5z M777.9,322.7l-12.4,59.7c-0.7,3.4-2,8.3-4.2,11
+                                                c-1.6,1.9-3.5,2.7-5.9,2.7c-0.7,0-2.2-0.1-2.8-0.6c-1-0.9-1.4-2-1.6-3.3c-0.3-2.4,0.3-6,0.8-8.4l0.7-3.5l-33.8,4.5l-0.3,1.9
+                                                c-0.9,6.4-0.9,13.3,1.4,19.4c2,5.5,5.7,9.7,10.9,12.5c6.3,3.5,15.3,4.1,22.4,4.1c8.6,0,17-1.7,24.5-6.1
+                                                c6.3-3.7,11.7-8.7,15.3-15.1c4-7.4,6.5-16.9,8.2-25.1l11.2-53.9H777.9z"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#AF3437" d="M779.9,325.2h28.9L798.3,376c-2.2,10.7-4.9,18.8-7.9,24.4
+                                                c-3,5.6-7.8,10.3-14.3,14.2c-6.5,3.9-14.2,5.8-23.2,5.8c-9.4,0-16.5-1.3-21.1-3.8c-4.7-2.5-7.9-6.3-9.7-11.2
+                                                c-1.8-4.9-2.2-11-1.2-18.2l28.4-3.8c-0.8,4.1-1.1,7.2-0.8,9.2c0.3,2,1.1,3.6,2.4,4.8c0.9,0.8,2.4,1.2,4.5,1.2
+                                                c3.2,0,5.8-1.2,7.9-3.6c2-2.4,3.6-6.5,4.8-12.1L779.9,325.2z"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#AF3437" d="M620.4,418.7l19.4-93.5H688c8.9,0,15.6,0.8,20,2.3
+                                                c4.4,1.5,7.6,4.4,9.7,8.5c2,4.1,2.4,9.2,1.2,15.1c-1.1,5.2-3.1,9.7-6.1,13.4c-3,3.8-6.7,6.8-11,9.2c-2.8,1.5-6.4,2.7-10.9,3.7
+                                                c3.2,1.2,5.5,2.3,6.8,3.5c0.9,0.8,2.1,2.4,3.6,4.9c1.5,2.5,2.4,4.4,2.8,5.8l8.3,27.1h-32.6l-9.5-28.6c-1.2-3.7-2.4-6.1-3.7-7.2
+                                                c-1.8-1.4-4-2.2-6.6-2.2h-2.5l-7.9,37.9H620.4L620.4,418.7z M661,363.1h12.2c1.3,0,3.9-0.4,7.9-1.3c2-0.4,3.8-1.4,5.3-2.9
+                                                c1.5-1.6,2.5-3.4,2.9-5.4c0.6-3,0.1-5.3-1.4-6.9c-1.6-1.6-5-2.4-10.3-2.4h-12.7L661,363.1z"/>
+                                            <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#AF3437" points="552.5,325.2 623.9,325.2 619.8,345.3 577.4,345.3
+                                                574,361.6 610.2,361.6 606.2,380.5 570,380.5 562.1,418.7 533.1,418.7 			"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#AF3437" d="M504.5,325.2h28.8l-11.6,55.7c-1.1,5.5-3.1,10.7-5.8,15.6
+                                                c-2.7,4.9-6.3,9.2-10.8,12.9c-4.4,3.7-8.8,6.2-13.2,7.7c-6,2.1-13,3.1-20.9,3.1c-4.5,0-9.4-0.3-14.7-1c-5.2-0.6-9.5-1.9-12.7-3.8
+                                                c-3.2-1.9-6-4.6-8.2-8.1c-2.3-3.5-3.6-7.1-3.9-10.8c-0.5-5.9-0.3-11.2,0.6-15.8l11.6-55.7h28.8l-11.9,57.1
+                                                c-1.1,5.1-0.5,9.1,1.7,11.9c2.2,2.9,5.8,4.3,10.9,4.3c5,0,9.2-1.4,12.6-4.2c3.4-2.8,5.6-6.8,6.7-12L504.5,325.2z"/>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g id="Camada_1_1_">
+                                </g>
+                                </svg>
+                            </a>
+                        </div>                        
+                        <svg id="logotipo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 1400 150" style="enable-background:new 0 0 1400 150;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:none;}
+                            .st1{fill:#FFFFFF;}
+                        </style>
+                        <g id="XMLID_2_">
+                            <rect id="XMLID_65_" x="0" y="19" class="st0" width="1400" height="150"/>
+                            <path id="XMLID_4_" class="st1" d="M62.5,32v19.4L59,48.4c-4.7-3.1-9.8-4.7-15.2-4.7c-6.8,0-12.4,2.4-16.9,7.1
+                                c-4.5,4.8-6.8,10.7-6.8,17.7c0,7.2,2.3,13.2,6.9,18c4.6,4.8,10.3,7.2,17.2,7.2c5.2,0,10.1-1.5,14.6-4.4c0.9-0.6,1.5-0.9,1.7-1.1
+                                c0.7-0.7,1.3-1.3,1.9-1.7v18.5l-2,0.8l-5.6,2l-0.4,0.1c-1.7,0.6-3.3,1-5,1.2c-1.7,0.2-3.6,0.3-5.9,0.3c-11.3,0-20.9-3.9-28.8-11.8
+                                C6.9,89.9,2.9,80.2,2.9,68.8c0-11.6,4-21.4,11.9-29.2c7.9-7.8,17.8-11.8,29.6-11.8c5.2,0,10.5,1.1,16,3.4l1.6,0.8H62.5z"/>
+                            <path id="XMLID_6_" class="st1" d="M120.6,85.8H82.7c0,3.7,1.1,6.6,3.4,8.7c2.3,2.1,5.2,3.2,8.9,3.2c2.7,0,4.9-0.6,6.8-1.7
+                                c1.8-1.1,3.5-3,5.1-5.7l12.3,5.6c-4.9,9.2-12.9,13.8-24.1,13.8c-8.5,0-15.3-2.5-20.4-7.4C69.6,97.3,67,90.7,67,82.3
+                                c0-8.2,2.6-14.9,7.7-20.2c5.1-5.3,11.7-7.9,19.7-7.9c8.4,0,14.9,2.7,19.4,8.2C118.3,67.8,120.6,75.7,120.6,85.8z M94.2,65.6
+                                c-3.1,0-5.7,1-7.8,3.1c-2.1,2-3.3,4.8-3.7,8.3h22.1c0-3.6-1-6.3-2.9-8.3C100,66.5,97.4,65.6,94.2,65.6z"/>
+                            <path id="XMLID_9_" class="st1" d="M128.5,107.8V56.4h15.7l-0.2,8c3.6-6.1,9.1-9.2,16.4-9.2c2.4,0,4.6,0.3,6.7,1
+                                c2.1,0.7,3.9,1.7,5.5,3.1c2.2,1.7,3.7,3.8,4.6,6.2c0.9,2.4,1.3,5.7,1.3,9.8v32.6H163V79.9c0-7.5-3.1-11.2-9.2-11.2
+                                c-6.5,0-9.8,3.8-9.8,11.3v27.8H128.5z"/>
+                            <path id="XMLID_11_" class="st1" d="M184.6,69.1V56.4h5.9V39.1h15.7v17.3h9.6v12.9l-9.6-0.1v38.7h-15.7V69.1H184.6z"/>
+                            <path id="XMLID_13_" class="st1" d="M219.6,107.8V56.4h15.7v7.8c3-6.1,8.2-9.2,15.6-9.2h1.1v15.6c-1.7-0.7-3.5-1-5.2-1
+                                c-3.5,0-6.3,1-8.2,2.9c-1.2,1-2.1,2.3-2.5,3.9c-0.5,1.6-0.7,3.7-0.7,6.5v24.9H219.6z"/>
+                            <path id="XMLID_15_" class="st1" d="M251.5,82.2c0-7.8,2.7-14.5,8.2-19.8c5.4-5.4,12.1-8.1,20.1-8.1c8.2,0,15.1,2.7,20.6,8
+                                c5.5,5.3,8.3,11.9,8.3,19.8c0,7.8-2.7,14.4-8.2,19.7c-5.4,5.3-12.2,8-20.3,8s-14.9-2.7-20.4-8C254.2,96.5,251.5,90,251.5,82.2z
+                                 M280.1,68.6c-3.7,0-6.8,1.3-9.4,3.9c-2.5,2.6-3.8,5.8-3.8,9.6c0,3.9,1.3,7.1,3.8,9.7c2.5,2.6,5.7,3.9,9.5,3.9
+                                c3.6,0,6.7-1.3,9.2-3.9c2.5-2.6,3.8-5.8,3.8-9.8c0-3.9-1.3-7.1-3.8-9.6C286.9,69.9,283.8,68.6,280.1,68.6z"/>
+                            <path id="XMLID_18_" class="st1" d="M387.8,62.7V19h15.5v88.8h-15.2v-8.1l-1.9,2.7c-1.8,2-4.1,3.5-7,4.7c-2.8,1.2-5.9,1.7-9,1.7
+                                c-6.9,0-12.6-2.5-17.2-7.6c-4.6-5.1-6.9-11.5-6.9-19.2c0-7.8,2.4-14.3,7.1-19.6c4.8-5.3,10.7-7.9,17.7-7.9
+                                C378.3,54.5,383.9,57.3,387.8,62.7z M375.5,67.9c-3.7,0-6.8,1.4-9.4,4.1c-2.5,2.7-3.8,6-3.8,9.8c0,4.1,1.2,7.4,3.7,10
+                                c2.4,2.6,5.6,3.9,9.4,3.9c3.8,0,6.9-1.3,9.4-3.9c2.5-2.6,3.7-6,3.7-10.1c0-3.9-1.2-7.2-3.7-9.8C382.3,69.3,379.2,67.9,375.5,67.9z"
+                                />
+                            <path id="XMLID_21_" class="st1" d="M465.4,85.8h-37.8c0,3.7,1.1,6.6,3.4,8.7c2.3,2.1,5.2,3.2,8.9,3.2c2.7,0,4.9-0.6,6.8-1.7
+                                c1.8-1.1,3.5-3,5.1-5.7l12.3,5.6c-4.9,9.2-12.9,13.8-24.1,13.8c-8.5,0-15.3-2.5-20.4-7.4c-5.1-4.9-7.6-11.6-7.6-19.9
+                                c0-8.2,2.6-14.9,7.7-20.2c5.1-5.3,11.7-7.9,19.7-7.9c8.4,0,14.9,2.7,19.4,8.2C463.2,67.8,465.4,75.7,465.4,85.8z M439.1,65.6
+                                c-3.1,0-5.7,1-7.8,3.1c-2.1,2-3.3,4.8-3.7,8.3h22.1c0-3.6-1-6.3-2.9-8.3C444.9,66.5,442.3,65.6,439.1,65.6z"/>
+                            <path id="XMLID_24_" class="st1" d="M561.8,32v19.4l-3.5-2.9c-4.7-3.1-9.8-4.7-15.2-4.7c-6.8,0-12.4,2.4-16.9,7.1
+                                c-4.5,4.8-6.8,10.7-6.8,17.7c0,7.2,2.3,13.2,6.9,18c4.6,4.8,10.3,7.2,17.2,7.2c5.2,0,10.1-1.5,14.6-4.4c0.9-0.6,1.5-0.9,1.7-1.1
+                                c0.7-0.7,1.3-1.3,1.9-1.7v18.5l-2,0.8l-5.6,2l-0.4,0.1c-1.7,0.6-3.3,1-5,1.2c-1.7,0.2-3.6,0.3-5.9,0.3c-11.3,0-20.9-3.9-28.8-11.8
+                                c-7.8-7.8-11.8-17.5-11.8-28.9c0-11.6,4-21.4,11.9-29.2c7.9-7.8,17.8-11.8,29.6-11.8c5.2,0,10.5,1.1,16,3.4l1.6,0.8H561.8z"/>
+                            <path id="XMLID_26_" class="st1" d="M567.4,39.3c0-2.6,1-4.9,2.9-6.7c1.9-1.9,4.2-2.8,6.8-2.8c2.7,0,5,0.9,6.9,2.7
+                                c1.9,1.8,2.8,4.1,2.8,6.8c0,2.6-1,4.9-2.9,6.7c-1.9,1.9-4.2,2.8-6.8,2.8c-2.7,0-5-0.9-6.9-2.7C568.4,44.2,567.4,42,567.4,39.3z
+                                 M569.3,107.8V56.4H585v51.4H569.3z"/>
+                            <path id="XMLID_29_" class="st1" d="M647.5,85.8h-37.8c0,3.7,1.1,6.6,3.4,8.7c2.3,2.1,5.2,3.2,8.9,3.2c2.7,0,4.9-0.6,6.8-1.7
+                                c1.8-1.1,3.5-3,5.1-5.7l12.3,5.6c-4.9,9.2-12.9,13.8-24.1,13.8c-8.5,0-15.3-2.5-20.4-7.4c-5.1-4.9-7.6-11.6-7.6-19.9
+                                c0-8.2,2.6-14.9,7.7-20.2c5.1-5.3,11.7-7.9,19.7-7.9c8.4,0,14.9,2.7,19.4,8.2C645.2,67.8,647.5,75.7,647.5,85.8z M600.8,43.6
+                                L618,29.5h4.3l17.5,13.6l-6.3,8.1l-13-9.6l-13.1,10.1L600.8,43.6z M621.1,65.6c-3.1,0-5.7,1-7.8,3.1c-2.1,2-3.3,4.8-3.7,8.3h22.1
+                                c0-3.6-1-6.3-2.9-8.3C626.9,66.5,624.3,65.6,621.1,65.6z"/>
+                            <path id="XMLID_33_" class="st1" d="M655.4,107.8V56.4h15.7l-0.2,8c3.6-6.1,9.1-9.2,16.4-9.2c2.4,0,4.6,0.3,6.7,1
+                                c2.1,0.7,3.9,1.7,5.5,3.1c2.2,1.7,3.7,3.8,4.6,6.2c0.9,2.4,1.3,5.7,1.3,9.8v32.6h-15.5V79.9c0-7.5-3.1-11.2-9.2-11.2
+                                c-6.5,0-9.8,3.8-9.8,11.3v27.8H655.4z"/>
+                            <path id="XMLID_35_" class="st1" d="M754.3,57.1v16.3c-2.6-3.1-6.1-4.6-10.5-4.6c-3.9,0-7.1,1.3-9.6,3.8c-2.5,2.5-3.7,5.9-3.7,10
+                                c0,3.9,1.2,7.1,3.7,9.6c2.4,2.5,5.5,3.7,9.3,3.7c3.9,0,7.4-1.4,10.7-4.3v15.6c-4.3,1.5-8.5,2.2-12.5,2.2c-8.1,0-14.8-2.5-19.9-7.4
+                                c-5.2-4.9-7.7-11.4-7.7-19.4c0-8,2.6-14.8,7.8-20.1c5.2-5.4,11.8-8.1,19.7-8.1C745.9,54.5,750.1,55.4,754.3,57.1z"/>
+                            <path id="XMLID_37_" class="st1" d="M760.3,39.3c0-2.6,1-4.9,2.9-6.7c1.9-1.9,4.2-2.8,6.8-2.8c2.7,0,5,0.9,6.9,2.7
+                                c1.9,1.8,2.8,4.1,2.8,6.8c0,2.6-1,4.9-2.9,6.7c-1.9,1.9-4.2,2.8-6.8,2.8c-2.7,0-5-0.9-6.9-2.7C761.2,44.2,760.3,42,760.3,39.3z
+                                 M762.1,107.8V56.4h15.7v51.4H762.1z"/>
+                            <path id="XMLID_40_" class="st1" d="M828.5,63.9v-7.5h15.4v51.4h-15.4v-8.2c-1.5,3.1-3.7,5.4-6.7,7c-3,1.6-6.6,2.4-10.6,2.4
+                                c-7.1,0-13-2.5-17.5-7.4c-4.6-4.9-6.9-11.3-6.9-19.1c0-7.8,2.4-14.4,7.1-19.7c4.7-5.3,10.5-8,17.4-8c3.7,0,7.1,0.8,10.2,2.4
+                                C824.6,58.9,826.9,61.1,828.5,63.9z M815.6,68.1c-3.7,0-6.8,1.3-9.3,3.9c-2.5,2.6-3.7,6-3.7,10c0,4.1,1.2,7.4,3.6,9.9
+                                c2.4,2.5,5.5,3.8,9.4,3.8c3.8,0,6.9-1.3,9.4-4c2.5-2.7,3.8-5.9,3.8-9.9c0-3.9-1.3-7.2-3.8-9.9C822.6,69.4,819.4,68.1,815.6,68.1z"
+                                />
+                            <path id="XMLID_43_" class="st1" d="M850.1,98.1l11.7-6.2c0.7,1.9,1.7,3.4,3.1,4.4s3,1.6,4.7,1.6c1.6,0,2.9-0.4,4-1.3
+                                c1.1-0.9,1.6-2,1.6-3.4c0-1.8-1.8-3.4-5.3-4.7l-2.7-1.1c-3.1-1.2-5.3-2.2-6.6-2.9c-1.3-0.7-2.5-1.6-3.7-2.8
+                                c-2.8-3-4.3-6.5-4.3-10.7c0-5,1.8-9.1,5.3-12.3c3.6-3.2,8.1-4.8,13.6-4.8c8.4,0,14.5,3.5,18.1,10.5l-11.4,5.3
+                                c-1.3-2.9-3.2-4.4-5.8-4.4c-1.3,0-2.4,0.4-3.3,1.3c-0.9,0.9-1.3,2-1.3,3.3c0,0.9,0.3,1.8,0.9,2.6c0.6,0.5,1.2,0.9,1.8,1.3
+                                c0.6,0.3,1.7,0.8,3.3,1.4l2.9,1l2.2,0.9c7.6,2.8,11.4,7.8,11.4,14.9c0,5.2-1.9,9.5-5.7,12.8c-3.8,3.3-8.7,5-14.7,5
+                                C860,109.8,853.3,105.9,850.1,98.1z"/>
+                            <path id="XMLID_45_" class="st1" d="M968.8,62.7V19h15.5v88.8h-15.2v-8.1l-1.9,2.7c-1.8,2-4.1,3.5-7,4.7c-2.8,1.2-5.9,1.7-9,1.7
+                                c-6.9,0-12.6-2.5-17.2-7.6c-4.6-5.1-6.9-11.5-6.9-19.2c0-7.8,2.4-14.3,7.1-19.6c4.8-5.3,10.7-7.9,17.7-7.9
+                                C959.3,54.5,964.9,57.3,968.8,62.7z M956.5,67.9c-3.7,0-6.8,1.4-9.4,4.1c-2.5,2.7-3.8,6-3.8,9.8c0,4.1,1.2,7.4,3.7,10
+                                c2.4,2.6,5.6,3.9,9.4,3.9c3.8,0,6.9-1.3,9.4-3.9c2.5-2.6,3.7-6,3.7-10.1c0-3.9-1.2-7.2-3.7-9.8C963.3,69.3,960.2,67.9,956.5,67.9z"
+                                />
+                            <path id="XMLID_48_" class="st1" d="M1034.6,63.9v-7.5h15.4v51.4h-15.4v-8.2c-1.5,3.1-3.7,5.4-6.7,7c-3,1.6-6.6,2.4-10.6,2.4
+                                c-7.1,0-13-2.5-17.5-7.4c-4.6-4.9-6.9-11.3-6.9-19.1c0-7.8,2.4-14.4,7.1-19.7c4.7-5.3,10.5-8,17.4-8c3.7,0,7.1,0.8,10.2,2.4
+                                C1030.7,58.9,1033,61.1,1034.6,63.9z M1021.8,68.1c-3.7,0-6.8,1.3-9.3,3.9c-2.5,2.6-3.7,6-3.7,10c0,4.1,1.2,7.4,3.6,9.9
+                                c2.4,2.5,5.5,3.8,9.4,3.8c3.8,0,6.9-1.3,9.4-4c2.5-2.7,3.8-5.9,3.8-9.9c0-3.9-1.3-7.2-3.8-9.9C1028.7,69.4,1025.5,68.1,1021.8,68.1
+                                z"/>
+                            <path id="XMLID_51_" class="st1" d="M1087.3,99.6l9.7-12.4c4.4,5,9,7.5,14.1,7.5c3.1,0,5.5-0.9,7.4-2.6c1.9-1.7,2.8-4,2.8-6.9
+                                c0-2.3-0.6-4.1-1.9-5.5c-1.2-1.4-3.5-2.7-6.6-3.9l-4.1-1.6c-2.3-0.8-4.1-1.5-5.5-2.2c-1.4-0.7-2.7-1.5-4-2.3c-6-4.4-9-10.4-9-17.8
+                                c0-6.9,2.5-12.7,7.6-17.3c5.1-4.6,11.4-7,19-7c6.2,0,11.8,1.6,16.8,4.9l4.1,3.6l-8.6,11.9c-3.6-4-7.4-6-11.7-6
+                                c-2.8,0-5.1,0.8-6.9,2.5c-1.8,1.6-2.7,3.8-2.7,6.5c0,4.1,2.7,7.2,8.1,9l2.6,1c2.8,1,4.9,1.8,6.3,2.5c1.4,0.6,2.7,1.3,3.8,1.9
+                                c6.9,3.9,10.4,10.1,10.4,18.9c0,7.6-2.6,13.8-7.7,18.5c-5.1,4.7-11.9,7.1-20.2,7.1c-7.3,0-13.7-1.9-19.1-5.8
+                                c-0.7-0.6-1.4-1.1-2-1.6C1089.3,101.8,1088.4,100.9,1087.3,99.6z"/>
+                            <path id="XMLID_53_" class="st1" d="M1186.1,63.9v-7.5h15.4v51.4h-15.4v-8.2c-1.5,3.1-3.7,5.4-6.7,7c-3,1.6-6.6,2.4-10.6,2.4
+                                c-7.1,0-13-2.5-17.5-7.4c-4.6-4.9-6.9-11.3-6.9-19.1c0-7.8,2.4-14.4,7.1-19.7c4.7-5.3,10.5-8,17.4-8c3.7,0,7.1,0.8,10.2,2.4
+                                C1182.2,58.9,1184.5,61.1,1186.1,63.9z M1173.3,68.1c-3.7,0-6.8,1.3-9.3,3.9c-2.5,2.6-3.7,6-3.7,10c0,4.1,1.2,7.4,3.6,9.9
+                                c2.4,2.5,5.5,3.8,9.4,3.8c3.8,0,6.9-1.3,9.4-4c2.5-2.7,3.8-5.9,3.8-9.9c0-3.9-1.3-7.2-3.8-9.9C1180.2,69.4,1177,68.1,1173.3,68.1z"
+                                />
+                            <path id="XMLID_56_" class="st1" d="M1263.3,56.4V85c0,5.5-0.7,9.6-2.1,12.3c-1.7,3.7-4.6,6.7-8.7,8.8c-4.1,2.2-9,3.3-14.5,3.3
+                                c-6.6,0-12.4-1.7-17.4-5c-2.8-2.1-4.8-4.6-6-7.5c-1.2-2.9-1.7-6.9-1.7-12V56.4h15.7v28.9c0,7,3.2,10.5,9.5,10.5
+                                c6.4,0,9.6-3.5,9.6-10.5V56.4H1263.3z M1229.4,46.1l14.4-17l10.6,7.7l-17.9,14.6L1229.4,46.1z"/>
+                            <path id="XMLID_59_" class="st1" d="M1313.4,62.7V19h15.5v88.8h-15.2v-8.1l-1.9,2.7c-1.8,2-4.1,3.5-7,4.7c-2.8,1.2-5.9,1.7-9,1.7
+                                c-6.9,0-12.6-2.5-17.2-7.6c-4.6-5.1-6.9-11.5-6.9-19.2c0-7.8,2.4-14.3,7.1-19.6c4.8-5.3,10.7-7.9,17.7-7.9
+                                C1303.9,54.5,1309.5,57.3,1313.4,62.7z M1301.1,67.9c-3.7,0-6.8,1.4-9.4,4.1c-2.5,2.7-3.8,6-3.8,9.8c0,4.1,1.2,7.4,3.7,10
+                                c2.4,2.6,5.6,3.9,9.4,3.9c3.8,0,6.9-1.3,9.4-3.9c2.5-2.6,3.7-6,3.7-10.1c0-3.9-1.2-7.2-3.7-9.8
+                                C1307.9,69.3,1304.8,67.9,1301.1,67.9z"/>
+                            <path id="XMLID_62_" class="st1" d="M1391,85.8h-37.8c0,3.7,1.1,6.6,3.4,8.7c2.3,2.1,5.2,3.2,8.9,3.2c2.7,0,4.9-0.6,6.8-1.7
+                                c1.8-1.1,3.5-3,5.1-5.7l12.3,5.6c-4.9,9.2-12.9,13.8-24.1,13.8c-8.5,0-15.3-2.5-20.4-7.4c-5.1-4.9-7.6-11.6-7.6-19.9
+                                c0-8.2,2.6-14.9,7.7-20.2c5.1-5.3,11.7-7.9,19.7-7.9c8.4,0,14.9,2.7,19.4,8.2C1388.8,67.8,1391,75.7,1391,85.8z M1364.7,65.6
+                                c-3.1,0-5.8,1-7.8,3.1c-2.1,2-3.3,4.8-3.7,8.3h22.1c0-3.6-1-6.3-2.9-8.3C1370.5,66.5,1367.9,65.6,1364.7,65.6z"/>
+                        </g>
+                        <g id="XMLID_1_">
+                        </g>
+                        <g id="XMLID_3_">
+                        </g>
+                        <g id="XMLID_66_">
+                        </g>
+                        <g id="XMLID_67_">
+                        </g>
+                        <g id="XMLID_68_">
+                        </g>
+                        <g id="XMLID_69_">
+                        </g>
+                        <g id="XMLID_70_">
+                        </g>
+                        <g id="XMLID_71_">
+                        </g>
+                        <g id="XMLID_72_">
+                        </g>
+                        <g id="XMLID_73_">
+                        </g>
+                        <g id="XMLID_74_">
+                        </g>
+                        <g id="XMLID_75_">
+                        </g>
+                        <g id="XMLID_76_">
+                        </g>
+                        <g id="XMLID_77_">
+                        </g>
+                        <g id="XMLID_78_">
+                        </g>
+                        </svg>
+                        <a href="/"><img id="logotipo-png" src="/img/logotipo.png"></a>
+                    </div>
+                    <a target="_blank" href="http://ufrj.br"><img class="ufrj100Anos" src="/img/ufrj100Anos.png"></a>
+                    <div class="busca-e-navegacao">
+                        <form action="/busca/1" method="get" name="form-busca-geral" id="form-busca-geral">
+                            <input type="text" name="input-busca-geral" id="input-busca-geral" value="" placeholder="pesquisar">
+                            <button type="submit" class="btn-busca" >
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                        <i class="fa fa-bars icone-menu-mobile"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="espacador"></div> <!--aqui acaba a barra superior-->
+            <nav id="main-nav">
+               <h2 id="main-nav-titulo" class="hidden">menu</h2>
+                <ul id="main-menu">
+                    <li class="menu menu1">
+                        <div class=" menu menu1 n1" id="menu-ccs">
+                            <p>Sobre o CCS</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <a href="/conteudos/historico"><li class="menu-item n2" id="menu-historico"><span class="n2">Histórico</span></li></a>
+                            <li>
+                                <div class="menu menu2 n2" id="menu-decania">
+                                    <p>Decania</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/organograma"><li class="menu-item n3" id="organograma"><span>Organograma</span></li></a>
+                                    <li>
+                                        <div class="menu menu3 n3" id="menu-gestao">
+                                            <p>Gestão</p>
+                                            <div class="icon">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                        <ul class="menu">
+                                            <a href="/equipeDecania"><li class="menu-item n4" id="menu-equipe"><span>Equipe</span></li></a>
+                                            <a href="/conteudos/relatorioGestao"><li class="menu-item n4" id="rel-gestao"><span>Relatório de gestão</span></li></a>
+                                        </ul>
+                                    </li>
+                                    <a href="/conteudos/conselhoCoordenacao"><li class="menu-item n3" id="menu-conselho"><span>Conselho de Coordenação</span></li></a>
+                                    <!--<a href="/conteudos/camaraHospitais"><li class="menu-item n3" id="camara"><span>Câmara dos Hospitais</span></li></a>-->
+                                </ul>
+                            </li>
+                                                           
+                                <a href="/conteudos/unidadesCCS"><li class="menu-item n2" id="menu-unidades-CCS"><span>Unidades</span></li></a>                                  
+                            
+                            <li>
+                                <div class="menu menu2 n2" id="menu-coordenacoes">
+                                    <p>Coordenações</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/biosseguranca"><li class="menu-item n3" id="menu-biosseguranca"><span>Biossegurança</span></li></a>
+                                    <li>
+                                        <div class="menu menu3 n3" id="menu-cambe">
+                                            <p>CAMBE</p>
+                                            <div class="icon">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                        <ul class="menu">
+                                            <a href="/conteudos/cambe"><li class="menu-item n4" id="menu-cambe"><span>CAMBE</span></li></a>
+                                            <a href="/conteudos/ceua"><li class="menu-item n4" id="menu-ceua"><span>CEUA</span></li></a>
+                                        </ul>
+                                    </li>
+                                     <a href="/conteudos/extensao"><li class="menu-item n3" id="menu-extensao-coordenacao"><span>Extensão</span></li></a>
+                                    <a href="/conteudos/inovacao"><li class="menu-item n3" id="menu-inovacao"><span>Inovação</span></li></a>
+                                    <a href="/conteudos/integracaoAcademica"><li class="menu-item n3" id="menu-integracao"><span>Integração Acadêmica</span></li></a>
+                                    <a href="/conteudos/posGraduacao"><li class="menu-item n3" id="menu-pos-graduacao-coordenacao"><span>Pós-Graduação</span></li></a>
+                                    <a href="/conteudos/projetosEspeciais"><li class="menu-item n3" id="menu-proj-esp"><span>Projetos Especiais</span></li></a>
+                                    <a href="/conteudos/qsmsrs"><li class="menu-item n3" id="menu-qualidade"><span>QSMSRS</span></li></a>
+                                    <a href="/conteudos/relacoesInternacionais"><li class="menu-item n3" id="menu-ri"><span>Relações Internacionais</span></li></a>
+                                    <li>
+                                        <div class="menu menu3 n3" id="menu-residuos">
+                                            <p>Gerenciamento de Resíduos</p>
+                                            <div class="icon">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                        <ul class="menu">
+                                            <a href="/conteudos/reciclaccs"><li class="menu-item n4" id="menu-recicla-sobre"><span>Recicla CCS</span></li></a>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <a href="/conteudos/localizacao"><li class="menu-item n2" id="menu-localizacao"><span>Localização e mapas</span></li></a>
+                        </ul>
+                    </li>
+                    <li class="menu menu1">
+                        <div class="menu menu1 n1" id="menu-ensino">
+                            <p>Ensino</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <li>
+                                <div class="menu menu2 n2" id="menu-graduacao">
+                                    <p>Graduação</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/ceg"><li class="menu-item n3"><span>CEG</span></li></a>
+                                    <a href="/conteudos/cursos"><li class="menu-item n3"><span>Cursos</span></li></a>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu menu2 n2" id="menu-pos-graduacao">
+                                    <p>Pós-Graduação</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/latoSensu"><li class="menu-item n3"><span>Lato Sensu</span></li></a>
+                                    <a href="/conteudos/strictoSensu"><li class="menu-item n3"><span>Stricto Sensu</span></li></a>
+                                    <a href="/conteudos/pbv"><li class="menu-item n3"><span>PG em Biotecnologia Vegetal</span></li></a>
+                                    <a href="/conteudos/residencia"><li class="menu-item n3"><span>Residências</span></li></a>
+                                    <a href="/conteudos/cepg"><li class="menu-item n3"><span>CEPG</span></li></a>
+                                </ul>
+                            </li>
+                            <a href="/busca/1?input-busca-geral=oportunidades%26editais"><li class="menu-item n2"><span>Oportunidades e Editais</span></li></a>
+                        </ul>
+                    </li>
+                    <li class="menu menu1">
+                        <div class="menu menu1 n1" id="menu-pesquisa">
+                            <p>pesquisa</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <a href="/conteudos/programasPesquisa"><li class="menu-item n2"><span>Programas de Pesquisa</span></li></a>
+                            <a href="/conteudos/incts"><li class="menu-item n2"><span>INCTs, projetos FAPERJ, FINEP, outros</span></li></a>
+                            <a href="/conteudos/posDoutorandos"><li class="menu-item n2"><span>Pós-Doutorandos</span></li></a>
+                            <a href="/conteudos/laboratorios"><li class="menu-item n2"><span>Laboratórios</span></li></a>
+                            <li>
+                                <div class="menu menu2 n2" id="menu-unid-multi">
+                                    <p>Unidades Multiusuário</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/umaa"><li class="menu-item n3"><span>UMAA</span></li> </a>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu menu1">
+                        <div class="menu menu1 n1" id="menu-extensao">
+                            <p>extensão</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <a href="/conteudos/projetosExtensao"><li class="menu-item n2"><span>Projetos de Extensão</span></li></a>
+                            <a href="/conteudos/programasExtensao"><li class="menu-item n2"><span>Programas de Extensão</span></li></a>
+                            <a href="/conteudos/sigproj"><li class="menu-item n2"><span>SIGProj</span></li></a>
+                        </ul>
+
+                    </li>
+                    <li class="menu menu1">
+                        <div class="menu menu1 n1" id="menu-servicos">
+                            <p>serviços</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <li>
+                                <div class="menu menu2 n2" id="menu-protocolo">
+                                    <p>Protocolo do CCS</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a href="/conteudos/revalidacaoDiplomas"><li class="menu-item n3"><span>Revalidação de Diplomas</span></li></a>   
+                                </ul>
+                            </li>                                                        
+                            <a href="/conteudos/pendente"><li class="menu-item n2"><span>Descarte de resíduos</span></li></a>
+                            <a href="/conteudos/pendente"><li class="menu-item n2"><span>Químicos e infectantes</span></li></a>
+                            <a href="/conteudos/pendente"><li class="menu-item n2"><span>Recicla CCS</span></li></a>
+                        </ul>
+                    </li> 
+                    <li class="menu menu1">
+                        <div class="menu menu1 n1" id="menu-sistemas">
+                            <p>sistemas</p>
+                            <div class="icon">
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <ul class="hidden">
+                            <li>
+                                <div class="menu menu2 n2" id="menu-sistemas-decania">
+                                    <p>Decania</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">                                    
+                                    <!--<a href="/reserva"><li class="menu-item n3"><span>Reserva de espaços</span></li></a>-->                                 
+                                    <a href="/manutencao"><li class="menu-item n3"><span>Chamados de Manutenção</span></li></a>                                    
+                                </ul>
+
+                            </li>
+                            <li>
+                                <div class="menu menu2 n2" id="menu-sistemas-externos">
+                                    <p>Sistemas externos</p>
+                                    <div class="icon">
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <ul class="menu">
+                                    <a target="_blank" href="http://www.sibi.ufrj.br/"><li class="menu-item n3"><span>SiBi</span></li></a>
+                                    <a target="_blank" href="https://cas.ufrj.br/login?service=https%3A%2F%2Fintranet.ufrj.br%2Fcas%3Fdestination%3Dnode%2F4"><li class="menu-item n3"><span>SIGA</span></li></a>
+                                    <a target="_blank" href="http://www.sigma.ufrj.br/site/espaco/index.htm"><li class="menu-item n3"><span>SIGMA</span></li></a>
+                                    <a target="_blank" href="http://lattes.cnpq.br/"><li class="menu-item n3"><span>Plataforma Lattes</span></li></a>
+                                    <a href="/conteudos/agenciasFomento"><li class="menu-item n3"><span>Agências de fomento</span></li></a>
+                                    <a target="_blank" href="http://sigproj1.mec.gov.br/"><li class="menu-item n3"><span>SIGProj</span></li></a>
+                                    <a target="_blank" href="http://ctnbio.mcti.gov.br/"><li class="menu-item n3"><span>CTNBio</span></li></a>
+                                    <a target="_blank" href="http://plataformabrasil.saude.gov.br/"><li class="menu-item n3"><span>Plataforma Brasil</span></li></a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> <!--fim do menu-->
+            </nav>
+        </header>
+        <i id="fechar-mapa" class="fa fa-times fechar-mapa hidden opacidade-zero"></i>

@@ -1,0 +1,30 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="deslocar manutencao-abrir-ds">
+    <h1>Chamados de manutenção</h1>
+    <h3 class="centralizado">Preencha os campos abaixo para abrir um chamado de manutenção</h3>
+    <p class='abrangencia-servicos'>Os serviços de manutenção destinam-se às demandas originadas no âmbito do Prédio do CCS. Dúvidas acerca da área de abrangência das oficinas poderão ser esclarecidas pelo telefone <a href="tel:21-3938-6652">(21)3938-6652</a> ou através do nossa <a href="/faleConosco">Central de Comunicação </a>(opção outros).</p>
+    <div id="form-wrap">
+        <form method="post" class="formulario" enctype="multipart/form-data" id="form-ds" action="/manutencao/abrirDS" novalidate>
+            {{> formDS}}
+            <div class="file-upload">
+                <p>Imagens</p>
+                <i class="fa fa-info"></i>
+                <span class="dica">Envie, se possível, imagens que possam contribuir com a identificação do problema e com a realização dos serviços.</span>                
+            </div>
+            <div class="btn-acao btn-inserir-arquivos">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <span>inserir arquivo</span>
+            </div>
+            <div class='arquivos-container'></div>
+            <div>
+                <input type="submit" id="btn-submit" value="enviar">
+            </div>
+        </form>
+    </div>
+</main>
+<script src="/dist/scripts/anexar_arquivos.min.js"></script>
+<script src="/dist/scripts/manutencao.min.js"></script>
+<link rel="stylesheet" href="/dist/styles/manutencao.min.css">
+{{> footer}}

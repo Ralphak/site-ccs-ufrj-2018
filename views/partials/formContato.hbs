@@ -1,0 +1,65 @@
+<div>
+    <label for="nome"><p>Nome</p></label>
+    <input type="text" name="nome" id="nome" placeholder="Nome" required>
+</div>
+<div>
+    <label for="email"><p>e-mail</p></label>
+    <input type="email" name="email" id="email" placeholder="e-mail" required>
+</div>
+<div>
+    <p>Foto já cadastrada?</p>
+    <input type="radio" name="foto" id="foto-sim" value=true>
+    <label for="foto-sim"><span></span>Sim</label>
+    <input type="radio" name="foto" id="foto-nao" value=false>
+    <label for="foto-nao"><span></span>Não</label>
+</div>
+<div>
+    <label for="tel"><p>Telefone</p></label>
+    <input type="text" name="tel" id="tel" placeholder="telefone">
+</div>
+<div>
+    <label for="vinculo"><p>Vínculo</p></label>
+    <input type="text" name="vinculo" id="vinculo" placeholder="vinculo">
+</div>
+
+<div class="inserir-cargo">Inserir cargo</div>
+<div class="cargos">
+    
+    <div class="input-cargos-div">
+        <div class="input-cargos">
+            <label for="contexto">contexto</label>
+            <input type="text" name="contexto" id="contexto${total}">
+        </div>
+        <div class="input-cargos">
+            <label for="cargo${total}">cargo</label>
+            <input type="text" name="cargo" id="cargo${total}">
+        </div>        
+        <i class="fa fa-times-circle"></i>
+    </div>
+</div>
+<div>
+    <label for="grupos"><p>grupos</p></label>
+    <input type="text" name="grupos" id="grupos" placeholder="grupos">
+</div>
+<div id="permissoes">
+    <p>Permissões de acesso<p>
+    <div>
+        <input type="checkbox" name="permissoes" id="reservarAuditorios" value="reservarAuditorios">
+        <label for="reservarAuditorios"><span></span>reservar auditórios</label>
+    </div>
+    <div>
+        <input type="checkbox" name="permissoes" id="analisarReservaAuditorios" value="analisarReservaAuditorios">
+        <label for="analisarReservaAuditorios"><span></span>analisar reserva de auditórios</label>
+    </div>
+    <div>
+        <input type="checkbox" name="permissoes" id="gerenteSistema" value="gerenteSistema">
+        <label for="gerenteSistema"><span></span>gerente do sistema</label>
+    </div>
+    <div>
+        <input type="checkbox" name="permissoes" id="chefeManutencao" value="chefeManutencao">
+        <label for="chefeManutencao"><span></span>chamados de manutençao</label>
+    </div>
+</div>
+<div>
+    <input type="submit" id="btn-submit" value="enviar">
+</div>

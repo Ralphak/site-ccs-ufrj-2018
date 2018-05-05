@@ -1,0 +1,20 @@
+{{> header}}
+{{> topBarDesktop}}
+    <div id="div-cancelar-reserva">
+        <h2>Cancelamento de reserva</h2>
+        <form action="/reserva/cancelar/{{idReserva}}" method="post" name="cancelarReserva" class="formulario" id="cancelar-reserva" accept-charset="utf-8">
+            <div>
+                <label for="codigoReserva"><p>Código de reserva</p></label>
+                <input type="text" name="codigoReserva" id="codigoReserva" readonly value="{{idReserva}}">
+            </div>
+            <div>
+                <label for="motivoCancelamento"><p>Motivo do cancelamento:</p></label>
+                <textarea name="motivoCancelamento" id="motivoCancelamento" required></textarea><br>
+            </div>
+            <div>
+                <input type="submit" id="btn-submit-cancelar-reserva" value="Enviar">
+            </div>
+        </form>
+    </div>
+<script src="/dist/scripts/conteudos.min.js"></script>
+{{> footer}}

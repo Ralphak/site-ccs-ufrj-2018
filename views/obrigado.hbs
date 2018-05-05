@@ -1,0 +1,21 @@
+{{> header}}
+{{> topBarDesktop}}
+<main class="deslocar">
+    <h1> {{nome}}, agradecemos o envio de sua mensagem.</h1>
+
+    <h2>Recebemos em nossa base de dados o seguinte conteúdo:</h2>
+
+    <div>
+        <p>Natureza do conteúdo: {{conteudo}}</p>
+        <p>Título: {{titulo}}</p>
+        <p>Texto: {{{corpo}}}</p>
+        <p>Arquivos:</p> 
+            {{#each anexos}}
+                <p>{{this.filename}}</p>
+            {{/each}}
+    </div>
+
+    <p>Clique no botão abaixo para retornar ao Site da Decania do CCS</p>
+    <a href="/"><button>Retornar</button></a>
+</main>
+{{> footer}}

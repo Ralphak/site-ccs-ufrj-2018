@@ -1,0 +1,19 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="deslocar manutencao-acompanhar">
+    <h1>Acompanhamento de Chamado de Manutenção</h1>
+    <div class="lista-eventos"></div>
+</main>
+
+<form class="ds-enviar-mensagem-div formulario">
+    <label for='ds-enviar-mensagem'><p>Enviar uma mensagem:</p></label>
+    <textarea id='ds-enviar-mensagem'></textarea>
+    <div>
+        <button class="btn-ds-enviar-mensagem">Enviar</button>
+    </div>
+</form>
+
+<link rel="stylesheet" href="/dist/styles/manutencao.min.css">
+<script src="/dist/scripts/manutencao.min.js"></script>
+{{> footer}}

@@ -1,0 +1,32 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="deslocar manutencao-editar-ds">
+    <h1>Chamados de manutenção</h1>
+    <h3 class="centralizado">Edição da Demanda de Serviço</h3>
+    <div id="form-wrap">
+        <form method="post" class="formulario" id="form-ds" action="/manutencao/editarDS">
+            <input type="text" class="hidden opacidade-zero" name="id" id="id">
+            <div>
+                <label for="identificacao"><p>Identificação da demanda de serviço:</p></label>
+                <input type="text" name="identificacao" id="identificacao">
+            </div>
+            <div>
+                <label for="prioridade"><p>Prioridade da demanda</p></label><br>
+                <select name="prioridade" id="prioridade" required>
+                    <option disabled value="">Selecione uma opção:</option>
+                    <option value=true>alta prioridade</option>
+                    <option value=false>prioridade normal</option>
+                </select>
+            </div>
+            {{> formDS}}
+
+            <div>
+                <input type="submit" id="btn-submit" value="salvar dados">
+            </div>
+        </form>
+    </div>
+</main>
+<link rel="stylesheet" href="/dist/styles/manutencao.min.css">
+<script src="/dist/scripts/manutencao.min.js"></script>
+{{> footer}}

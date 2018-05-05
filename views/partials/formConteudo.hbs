@@ -1,0 +1,101 @@
+<div class = "form-natureza sem-selecao">
+    <p>Natureza do conteúdo</p>
+    <div>
+        <input type="radio" name="natureza" id="radio0" value="pagina" required>
+        <label for="radio0"><span></span>Página</label>
+
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio1" value="noticia">
+        <label for="radio1"><span></span>Notícia</label>
+
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio2" value="evento">
+        <label for="radio2"><span></span>Evento</label>
+
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio3" value="informe">
+        <label for="radio3"><span></span>Informe</label>
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio4" value="video" required>
+        <label for="radio4"><span></span>Vídeo</label>
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio5" value="foto">
+        <label for="radio5"><span></span>Foto</label>
+    </div>
+    <div>
+        <input type="radio" name="natureza" id="radio6" value="depoimento">
+        <label for="radio6"><span></span>Depoimento</label>
+    </div>
+</div>
+<div class="conteudos-container-dados hidden opacidade-zero">
+    <div class='form-nome'>
+        <label for="nome">
+            <p>Nome do conteúdo</p>
+            <i class="fa fa-info"></i>
+            <span class="dica">O nome do conteúdo será o ID para referência no banco de dados e para a geração de links no HTML. Recomenda-se duas ou três palavras representativas para compor o nome, ambas escritas em letras minúsculas, com um espaço simples separando-as. Obs.: O nome do conteúdo não é editável. Atenção ao nomeá-lo!</span>
+        </label>
+        <input type="text" name="nome" id="nome" required>
+    </div>
+    <div class='form-titulo'>
+        <label for="titulo"><p>Título</p></label>
+        <input type="text" name="titulo" id="titulo" required>
+    </div>
+    <div id="autor-conteudo" class="hidden">
+        <label for="autor"><p>Autor do texto</p></label>
+        <input type="text" name="autor" id="autor">
+    </div>
+    <div class="form-personagem-nome" class="hidden">
+        <label for="personagem"><p>Nome do personagem em foco</p></label>
+        <input type="text" name="personagem" id="personagem">
+    </div>
+    <div class="form-personagem-atuacao" class="hidden">
+        <label for="atuacao"><p>Atuação</p>   
+            <i class="fa fa-info"></i>
+            <span class="dica">Ex.: Aluno do Curso de Bacharelado em Farmácia, Chefe do Setor de Compras da Faculdade de Odontologia, Docente da EEFD.</span>
+        </label>
+        <input type="text" name="atuacao" id="atuacao">
+    </div>
+    <div>
+        <label for="data">
+            <p>Data de publicação do conteúdo</p>            
+        </label>
+        <input type="date" name="data" id="data">
+    </div>
+    <div>
+        <label for="tags"><p>Tags do conteúdo (separados por vírgula, sem espaços)</p></label>
+        <input type="text" name="tags" id="tags">
+    </div>
+    <div id="form-imagem">
+        <p>Imagem</p>
+        <i class="fa fa-info"></i>
+        <span class="dica">Se houver imagem a aparecer nos cards e resultados de busca, marcar o checkbox. Caso haja outras imagens, no texto do conteúdo, inserir as demais diretamente no texto, clicando no botão do editor denominado "INSERIR IMAGEM". O botão insere um marcador {imagem} no texto. Para cada marcador, deverá haver um arquivo de imagem correspondente no servidor, salvo com o nome "aaaa-mm-dd-nomeConteudoN.jpg", onde "N" é o número sequencial das imagens secundárias, contadas a partir de zero.</span>
+        <div class="imagem">
+            <input type="checkbox" name="imagem" id="imagem" value=true>
+            <label for="imagem"><span></span>O conteúdo tem imagens de capa?</label>
+        </div>
+    </div>
+    <div id="legenda-imagem" class="hidden">
+        <label for="legenda"><p>Legenda da imagem principal</p></label>
+        <input type="text" name="legenda" id="legenda">
+    </div>
+    <div>
+        <label for="texto"><p>Texto</p></label>
+        <textarea name="texto" class="tinyMCE" id="texto"></textarea><br>
+    </div>
+    <div class="id-midia">        
+    </div>
+    <p>Arquivos</p>
+    <div class="btn-acao btn-inserir-arquivos">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        <span>inserir arquivo</span>
+    </div>
+    <div class='arquivos-container'></div>
+    <div>
+        <input type="submit" id="btn-submit" value="Enviar">
+    </div>
+</div>

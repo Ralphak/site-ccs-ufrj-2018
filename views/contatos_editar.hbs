@@ -1,0 +1,13 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="editar-contato deslocar">
+    <div class="pessoas-container">
+        <h1>Editar contato</h1>  
+        <form action="/contatos/editar/{{id}}" method="post" id="{{id}}" class="formulario" accept-charset="utf-8">
+            {{>formContato}}
+        </form>
+    </div>
+</main>
+<script src="/dist/scripts/contatos.min.js"></script>
+{{> footer}}

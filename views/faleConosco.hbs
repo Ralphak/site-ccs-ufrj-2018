@@ -1,0 +1,159 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="div-fale-conosco deslocar">
+    <nav class="div-fale-conosco-header">
+        <div class="icon-container">
+            <i class="fa fa-paper-plane text-shadow-inset"></i>
+        </div>
+
+        <h2>Assessoria de comunicação da Decania do Centro de Ciências da Saúde</h2>
+        <h3>Selecione, no menu abaixo, o motivo de seu contato</h3>
+        <label for="naturezaContato"><p>Natureza do contato</p></label><br>
+        <select name="naturezaContato" id="naturezaContato" required>
+            <option disabled selected value="">Selecione uma opção:</option>
+            <option value="div-cancelar-reserva">cancelamento de reservas</option>
+            <option value="div-enviar-conteudo">envio de conteúdos</option>
+            <option value="div-reportar-problema">reportar um problema</option>
+            <!--TODO: ativar quando implementar a funcionalidade
+            <option value="div-manutencao-emergencial">manutenção emergencial</option>-->
+            <option value="div-outros">outros</option>
+        </select>
+    </nav>
+    <div class="formularios">
+        <div class="formularios-container">
+            <h2 class="formularios-vazio text-shadow-inset">Selecione um formulário para contato</h2>
+            <section id="div-enviar-conteudo" class="hidden opacidade-zero">
+                <h3>Envie conteúdos</h3>
+                <p>Preencha os campos abaixo para enviar conteúdos a serem divulgados no site do CCS:</p>
+                <form action="/enviarConteudo" method="post" name="myForm" id="enviar-conteudo" class="formulario" enctype="multipart/form-data" accept-charset="utf-8">
+                    <div>
+                        <label for="nome"><p>Nome</p></label>
+                        <input type="text" name="name" id="nome" required>
+                    </div>
+                    <div>
+                        <label for="email"><p>e-mail</p></label>
+                        <input type="email" name="usermail" id="email" required>
+                    </div>
+                    <div>
+                        <p>Natureza do conteúdo<p>
+                        <div>
+                            <input type="radio" name="conteudo" id="radio1" value="Notícia">
+                            <label for="radio1"><span></span>Notícia</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="conteudo" id="radio2" value="Evento">
+                            <label for="radio2"><span></span>Evento</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="conteudo" id="radio3" value="Informe">
+                            <label for="radio3"><span></span>Informe</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="assunto"><p>Título</p></label>
+                        <input type="text" name="subject" id="assunto" required>
+                    </div>
+                    <div>
+                        <label for="body"><p>Texto</p></label>
+                        <textarea form="enviar-conteudo" class="tinyMCE" name="corpo" id="body"></textarea><br>
+                    </div>
+                    <p>Enviar arquivos</p>
+                    <div class="btn-acao btn-inserir-arquivos">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        <span>inserir arquivo</span>
+                    </div>
+                    <div class='arquivos-container'></div>                        
+                    <div>
+                        <input type="submit" id="btn-submit" value="Enviar">
+                    </div>
+                </form>
+            </section>
+
+            <section id="div-cancelar-reserva" class="hidden opacidade-zero">
+                <h3>Cancelamento de reserva</h3>
+                <p>Informe o código da reserva e o e-mail do requerente, a fim de providenciarmos o cancelamento da reserva de auditório:</p>
+                <form action="/reserva/cancelar/" method="post" name="cancelarReserva" class="formulario" id="cancelar-reserva" accept-charset="utf-8">
+                    <div>
+                        <label for="codigoReserva"><p>Código de reserva</p></label>
+                        <p class="dica"><span>*</span>O código da reserva consta no e-mail de confirmação.</p>
+                        <input type="text" name="codigoReserva" id="codigoReserva"  required>
+                    </div>
+                    <div>
+                        <input type="submit" id="btn-submit-cancelar-reserva" value="Enviar">
+                    </div>
+                </form>
+            </section>
+
+            <section id="div-reportar-problema" class="hidden opacidade-zero">
+                <h3>Reporte um problema</h3>
+                <p>Utilize os campos abaixo para reportar um problema verificado no site da Decania ou em algum de seus sistemas:</p>
+                <form action="/reportarProblema" method="post" name="reportar-problema" class="formulario" id="reportar-problema" enctype="multipart/form-data" accept-charset="utf-8">
+                   <div>
+                        <label for="nomeProblema">
+                            <p>Nome</p>
+                            <i class="fa fa-info"></i>
+                            <span class="dica">opcional</span>
+                        </label>
+                        <input type="text" name="nome" id="nomeProblema">
+                    </div>
+                    <div>
+                        <label for="emailProblema">
+                            <p>e-mail</p>
+                            <i class="fa fa-info"></i>
+                            <span class="dica">opcional</span>
+                        </label>
+                        <input type="email" name="email" id="emailProblema">
+                    </div>
+                    <div>
+                        <label for="reportarProblema"><p>Descreva o problema</p></label>
+                        <textarea name="reportarProblema" id="reportarProblema" required></textarea>
+                    </div>
+                    <div class="file-upload-problema">
+                        <p>Se necessário, envie uma imagem do erro reportado:  </p>
+                        <div class="anexo">
+                            <div class="texto texto-anexo-problema"></div>
+                            <label class="label-upload" for="anexoProblema" id="label-anexo-problema">
+                                <i class="fa fa-upload"></i><span class='span-anexar'>Anexar Arquivo</span>
+                            </label>
+                            <input type="file" name="anexoProblema" id="anexoProblema" class="anexo">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" id="btn-submit-reportar-problema" value="Enviar">
+                    </div>
+                </form>
+            </section>
+            <section id="div-outros" class="hidden opacidade-zero">
+                <h3>Outros</h3>
+                <p>Para contatos de outra natureza, favor preencher os seguintes campos:</p>
+                <form action="/outros" method="post" name="outros-form" class="formulario" id="outros">
+                    <div>
+                        <label for="nomeOutros"><p>Nome</p></label>
+                        <input type="text" name="name" id="nomeOutros" required>
+                    </div>
+                    <div>
+                        <label for="emailOutros"><p>e-mail</p></label>
+                        <input type="email" name="emailOutros" id="emailOutros" required>
+                    </div>
+
+                    <div>
+                        <label for="bodyOutros"><p>Mensagem</p></label>
+                        <textarea name="bodyOutros" id="bodyOutros" required></textarea><br>
+                    </div>
+
+                    <div>
+                        <input type="submit" id="btn-submit-outros" value="Enviar">
+                    </div>
+                </form>
+            </section>
+            <!--TODO: ativar quando implementar a funcionalidade
+            <section id="div-manutencao-emergencial" class="hidden opacidade-zero">-->
+            </section>
+        </div>
+    </div>
+</main>
+<script src="/dist/scripts/anexar_arquivos.min.js"></script>
+<script src="/dist/scripts/conteudos.min.js"></script>
+<script src="/dist/scripts/faleConosco.min.js"></script>
+{{> footer}}

@@ -1,0 +1,86 @@
+@mixin containerBasic {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@mixin containerFull {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+@mixin basicFlex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@mixin button {
+    padding: 10px 15px;
+    border: 2px solid;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+@mixin osciladorVertical {
+    animation: {
+        name: osciladorVertical;
+        duration: 0.6s;
+        iteration-count: infinite;
+        timing-function: ease; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+        fill-mode: forwards;
+    };
+}
+
+@mixin dropCaps {
+    color: $vermelho;
+    float: left;
+    font-family: Georgia;
+    font-size: 75px;
+    line-height: 60px;
+    padding-top: 4px;
+    padding-right: 8px;
+    padding-left: 3px;
+}
+
+@mixin legendaConteudo {
+    margin: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.7);
+    color: #ccc;
+    font-family: 'Roboto Condensed';
+    font-size: 0.7em;
+    position: absolute; 
+    width: 100%;
+    bottom: 11px;
+    right: 0;
+    border-top: 1px solid #000;
+    text-align: left;
+}
+
+@mixin botao {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+    opacity: 0.75;
+}
+
+@mixin fonte-titulo {
+    font-family: $fonteTitulo;
+    font-weight: bold;
+}
+
+@mixin menu-icon {    
+    background-color: rgba(8, 8, 8, 0.15);
+    padding-left: 12px;
+    position: absolute;
+    height: 50px;
+    right: 0;
+    top: 0; 
+    padding: 12px 25px;
+    pointer-events: none;      
+}

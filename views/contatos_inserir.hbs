@@ -1,0 +1,13 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="inserir-contato deslocar">
+    <div class="pessoas-container">
+        <h1>Inserir contato</h1>  
+        <form action="/contatos/inserir" method="post" id="novo-contato" class="formulario" accept-charset="utf-8">
+            {{>formContato}}
+        </form>
+    </div>
+</main>
+<script src="/dist/scripts/contatos.min.js"></script>
+{{> footer}}

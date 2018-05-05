@@ -1,0 +1,60 @@
+<div class="login-header usuario">
+    <h2 class="mensagens-login usuario">Boas vindas, {{{usuario}}}!</h2> <i class="fa fa-caret-down seta login-seta"></i>
+</div>
+<div class="form-login-topbar">
+    <ul>
+        {{#if permissoes.reservarAuditorios}}
+            <span>Reservas</span>
+            <hr>
+            <li>
+                <a href="/reserva">Reserva de espaços</a>
+            </li>
+        {{/if}}
+        {{#if permissoes.analisarReservaAuditorios}}
+        <span>Gerência de reservas</span>
+        <hr>
+            <li>
+                <a href="/reserva/analise">Análise de pedidos de reserva</a>
+            </li>
+            <li>
+                <a href="/reserva/mapaSemana">Mapa de atividades semanais</a>
+            </li>
+            <li>
+                <a href="/reserva/mapaDia">Mapa de atividades em um dia</a>
+            </li>
+        {{/if}}
+        {{#if permissoes.gerenteSistema}}
+            <span>Gerência de conteúdos</span>
+            <hr>
+            <li>
+                <a href="/conteudos/inserir">Inserir conteúdo</a>
+            </li>
+            <li>
+                <a href="/conteudos/localizar">Localizar e editar conteúdos</a>
+            </li>
+            <span>Gerência de contatos</span>
+            <hr>
+            <li>
+                <a href="/contatos/inserir">Inserir contato</a>
+            </li>
+            <li>
+                <a href="/contatos/localizar">Localizar e editar contatos</a>
+            </li>
+        {{/if}}
+        {{#if permissoes.chefeManutencao}}
+            <span>Chamados de manutenção</span>
+            <hr>
+            <li>
+                <a href="/manutencao/gerenciar">Gerenciar demandas</a>
+            </li>
+        {{/if}}
+            <span>Acesso</span>
+            <hr>
+            <li>
+                <a href="/alterarsenha">Alterar senha</a>
+            </li>
+            <li>
+                <a href="/signout">Sair</a>
+            </li>
+    </ul>
+</div>

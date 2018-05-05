@@ -1,0 +1,48 @@
+==Sobre o CCS==
+historico 
+equipe 
+relatorioGestao -pendente
+conselhoCoordenacao 
+camaraHospitais -pendente
+unidadesAcademicas 
+unidadesHospitalares
+ 
+biosseguranca 
+cambe 
+ceua 
+extensao
+inovacao -pendente
+integracaoAcademica 
+posGraduacao 
+projetosEspeciais 
+arteCultura 
+saudeGlobal -pendente
+qualidadeSeguranca -pendente
+relacoesInternacionais
+reciclaccs
+localizacao 
+
+==Ensino==
+ceg 
+cursos 
+latoSensu 
+strictoSensu 
+residencia -pendente
+cepg 
+oportunidades 
+
+==Pesquisa==
+programasPesquisa 
+incts -pendente
+posDoutorandos -pendente
+laboratorios 
+umaa 
+
+==Extensão==
+projetosExtensao -pendente
+programasExtensao 
+sigproj -pendente
+
+==Sistemas==
+revalidacaoDiplomas 
+agenciasFomento 

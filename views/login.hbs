@@ -1,0 +1,23 @@
+{{> header}}
+{{> topBarDesktop}}
+<main class="login-container deslocar">
+    {{{message}}}
+
+    <form method="post" class="formulario" id="formLogin" action="/login">
+        <input name="urlDestino" class="hidden opacidade-zero" readonly value="{{urlDestino}}"> 
+        <div>
+            <label for="email-user"><p>E-mail:</p></label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="senha"><p>Senha:</p></label>
+            <input type="password" name="senha" id="senha" required>
+            <a href="/alterarsenha" class="mensagens-login">Esqueci minha senha</a>
+        </div>
+        <div>
+            <button type="submit" class="mensagens-login">Entrar</button>
+        </div>
+    </form>
+
+</main>
+{{> footer}}

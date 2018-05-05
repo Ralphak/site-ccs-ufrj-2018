@@ -1,0 +1,27 @@
+<!--TODO: quebrar os cards em 100% width-->
+{{> header}}
+{{> topBarDesktop}}
+<div id="reservas-semana-wrapper">
+    
+    <div id="escolher-semana" class="opacidade-zero hidden">
+        <i class="fa fa-times"></i>
+        <div class="esta-semana opcao-semana">
+            <p>Esta semana</p>
+            <i class="fa fa-print text-shadow-inset"></i>
+        </div>
+        <div class="opcao-semana">
+            <p>Semana que vem</p>
+            <i class="fa fa-print text-shadow-inset"></i>
+        </div>
+    </div>
+    <main id="reservas-semana-main" class="auditorios deslocar">
+        <div class="auditorios-wrapper">
+            <h1>Eventos da semana</h1>
+            <p>Selecione um dos espaços abaixo para imprimir o mapa de atividades semanais</p>
+        </div>
+        <div id="reservas-semana"></div>
+    </main>
+</div>
+<script src="/dist/scripts/agendaConsulta.min.js"></script>
+<script src="/dist/scripts/reservasMapasAtividades.min.js"></script>
+{{> footer}}

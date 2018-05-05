@@ -1,0 +1,206 @@
+Procedimento para alternar entre desenvolvimento e produção:
+
+    desenvolvimento para produção:
+        descomentar o script do analytics, na view parcial header.hbs;
+        comentar a chamada ao font-awesome, no header
+        alterar as configurações do gulp, a fim de minificar todos os arquivos js
+        minificar os arquivos que estiverem em suas versões de desenvolvimento
+        compilar os arquivos de scripts (não minificados!!!), em um único bundle, conforme instruções abaixo.        
+        comentar/descomentar os scripts listados no arquivo footer.hbs,
+        habilitar envio de emails na rota post para emails reais, se for o caso, descomentando os endereços no arquivo variables.env
+        fazer o push de todas as alterações, verificar, via pull, se há atualizações finais no branch de atualização
+        mudar para o ramo master, fazer push & pull para atualizar o ramo,
+        mesclar, a partir do master, o ramo de atualização
+
+    produção para iniciar novo ciclo de desenvolvimento:
+        comentar o script do analytics, em header.hbs;
+        descomentar o link para o font-awesome, no header,
+        comentar os scripts listados no arquivo footer.hbs,
+        alterar as configurações do gulp, a fim de não mais minificar os arquivos js
+        desabilitar envio de emails na rota post para emails reais, se for o caso, comentando os endereços no arquivo variables.env
+        fazer checkout em um novo ramo de desenvolvimento (git checkout -b <nome do ramo>);
+        preferencialmente, nomear o novo ramo com o sequencial de ataulizações (update1, update2, update3...);
+
+    Instruções para compilação do script bundle:
+
+        O arquivo bundleUX.js reune: jquery, jqueryUI, fontawesome, moment, moment locale PT/BR, datepicker PT-br e scripts.js.
+        Os arquivos são compilados no seguinte endereço: https://closure-compiler.appspot.com/home
+
+        As primeiras linhas do compiler são:
+
+        // ==ClosureCompiler== 
+        // @compilation_level SIMPLE_OPTIMIZATIONS
+        // @output_file_name default.js
+
+        devem ser inseridoas as seguintes linhas na janela do compiler:
+
+        // @code_url https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
+        // @code_url https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js
+        // @code_url https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js
+        // @code_url https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js
+        // @code_url https://use.fontawesome.com/60e0586006.js
+       
+        // ==/ClosureCompiler==
+
+        // ADD YOUR CODE HERE
+
+         inserir a tradução do datepicker (arquivo datepicker-pt-BR.js) e, depois, o arquivo script.js. Realizar este procedimento antes de qualquer atualização.
+        
+
+permissões de acesso
+    reservarAuditorios: Requerer uma reserva de um auditório.
+    analisarReservaAuditorios: Analisar os pedidos de reserva enviados à Decania, podendo aprová-los ou recusá-los.
+    chefeManutencao: Acesso ao sistema de gerenciamento de chamados.
+    gerenteSistema: Acesso a todos os módulos de acesso restrito.
+
+
+classifiçãoo de conteúdos
+    pagina
+    noticia
+    evento
+    informe
+    video
+    foto
+    depoimento
+
+Reserva de auditórios
+    status das reservas
+        requisitado: pedido aguardando análise da parte da Decania
+        agendado: pedido aceito pela decania
+        cancelado: pedido cancelado pelo requerente
+        recusado: pedido recusado pela decania
+        arquivado: evento já terminou e foi movido automaticamente para uma coleção de reservas concluídas, por intermédio do módulo rotinasAutomatizadas.
+
+    Estatísticas:
+        reservas solicitadas para cada espaço e para todos os espaços:
+            em andamento
+            eventos já realizados
+            por período
+
+        eventos não ocorridos para cada espaço e para todos os espaços
+            canceladas - geral e por período
+            recusadas - geral e por período
+
+    eventos possíveis em cada auditório:
+        eventos = [
+            "colação de grau", //0
+            "evento comemorativo de Unidade", //1
+            "evento comemorativo", //2
+            "cerimônia de posse", //3
+            "aula inaugural", //4
+            "recepção de calouros", //5
+            "semana acadêmica", //6
+            "workshop", //7
+            "simpósio", //8
+            "palestra/conferência", //9
+            "reunião do Conselho de Centro", //10
+            "congregação de Unidades", //11
+            "defesa de dissertação/tese", //12
+            "defesa de TCC", //13
+            "seminário", //14
+            "reuniões diversas", //15
+            "formatura", //16
+            "debates sobre consulta eleitoral - Unidades", //17
+            "forum", //18
+            "semana de treinamentos", //19
+            "mesa redonda", //20
+            "VI Semana da Fórmula", //21
+            "eventos variados", //22
+            "reunião", //23
+
+        ],
+        auditorios = {
+            quinhentao: [eventos[0], eventos[1], eventos[3], eventos[4], eventos[5], eventos[6], eventos[7], eventos[8], eventos[9]],
+            helioFraga: [eventos[10], eventos[11], eventos[12], eventos[9], eventos[8], eventos[2], eventos[14], eventos[23], eventos[4], eventos[5], eventos[16], "reunião de Extensão", "Liga Acadêmica", "diálogo de conclusão", "apresentação de vídeo"],
+            audN: [eventos[6], eventos[7], eventos[14], eventos[2], eventos[22], eventos[8], eventos[9], eventos[0], eventos[12], eventos[10], eventos[4], eventos[3], eventos[23], eventos[17], "jornada", "fórum", "semana de treinamentos", "mesa redonda", "Semana da Fórmula"],
+            bezao: [eventos[5], "provas - graduação e pós-graduação", "prova - processos seletivos", "assembleia", "encontro estudantil"],
+            n106: [eventos[9], eventos[23], "vídeo-conferência"],
+            n202: [eventos[12], eventos[22], eventos[23], eventos[13], eventos[7], eventos[4], eventos[14], "ciclos de debates e debates variados", "prova", "Cine Debate", "Biossemana", "Jornada de Pós-Graduação"]
+        };
+
+
+
+
+campos de busca
+    data: desde e até
+    classificaDoConteudo:
+    ordenacao: mais recentes ou mais antigos primeiro
+    relação entre termos: todas as palavras, qualquer palavra ou frase exata
+    resultados por página
+
+
+grupos de usuários e sistema de labels:
+
+    Os grupos de usuários têm a função de exibir usuários dinamicamente nas páginas do site. Pessoas que constam na página da equipe do CCS, nas coordenações e em outros contextos são localizadas e relacionadas nas respectivas páginas, sem que seja necesário inserir seus dados diretamente no HTML, bastando indicar as palavras-chave que a vinculam a determinada(s) página(s).
+    Ests palavras-chave devem ser indicadas no array grupos, separadas por uma vírgula simples, sem acentos ou espaços, conforme a seguinte convenção:
+    
+
+	tags para todos os contatos:
+        servidorDecania - Servidores lotados na Decania do CCS;
+        professor - docentes;
+        tecnico - servidores técnico-administrativos;
+        estagiario - estagiários da decania do CCS;
+        externo - pessoas externas à decania;
+        chefe - especificar que o contato exerce chefia ou substitui a chefia, pela adição do sufixo "-chefe" (ou "-chefeSub"), conforme veremos adiante
+        coordenador - especificar que o contato exerce coordenação ou substitui o coordenador, pela adição do sufixo "-coord" (ou "-coordSub"), conforme veremos adiante
+
+	Setores da decania e respectivos ID´s para geração da página "equipeDecania": consultar o arquivo "conteudos.js", onde constam os respectivos arrays
+
+    tags para assessorias da decania:        
+        ascom - Assesoria de Comunicação;
+        arteCultura - Assessoria de Arte e Cultura;
+        webdev - assessoria Web
+
+
+	tags para coordenadores da decania:
+        relacoesInternacionais;
+        extensao;
+        integracaoAcademica;
+        posGraduacao;
+        qsmsrs;
+        inovacaoTecnologica;
+        projetosEspeciais;
+        cambe;
+        biosseguranca;
+
+
+    projetos:
+        reciclaCCS;
+        arteCultura;
+
+
+    Cada usuário deve apresentar, necessariamente, entre seus grupos, uma das seguintes tags: servidorDecania, externo ou estagiario.
+    Cada servidor que figurar na página equipe, deverá apresentar, entre seus grupos, a tag equipeDecania, bem como a tag de seu setor.
+
+    Identificasção de coordenadores e chefes:
+    Os coordenadores e chefes devem ser indicados através de uma tag composta:
+        Estes devem ser identificados por uma tag composta pela tag do respectivo setor, concatenada com as strings "-coord" (ou "coord-sub") ou "-chefe" (ou "chefe-sub"). Ex.: qsmsrs-coord, ccs-pessoal-chefeSub, ccs-admSede-chefe.
+
+        Os chefes que constem em páginas do site (p. ex.: coordenadores do CCS), devem ser indicados através da inclusão, em seus grupos, de tag composta pelo ID do conteúdo, e pela string "-chefe". Ex.: relacoesInternacionais-chefe, projetosEspeciais-chefe, que aparecerão após os respectivos coordenadores (p.ex: relacoesInternacionais-coord e relacoesInternacionais-chefe são pessoas diferentes).
+
+chamados de manutenção
+    estado das demandas:
+        aberta - chamado criado pelo usuário e ainda não tratado pela adm
+        em andamento - quando, ao menos, uma OS é geraa
+        atendida parcialmente - alguma OS não pode ser executada/ainda não foi concluída
+        atendida - todas as OSs executadas
+        nao atendida - nenhuma OS pôde ser executada.
+        fora de escopo - O pedido não encontra-se no escopo de atividades das oficinas.
+
+        O status é atribuído automaticamente, quando a DS é salva. É feita verificação do status das OSs vinculadas e um teste condicional indicará o status atual, dentre aqueles indicados acima. Não é necessário informar se a DS foi concluída ou não. As concluídas serão movidas para uma coleção à parte, assim como ocorre nos pedidos de reserva de auditórios.
+
+Arquivos: 
+Os arquivos são arquivados nas pastas dos conteúdos correlatos. As atas têm rotinas particulares, para salvamento e exibição sequencial ano a ano. 
+Os arquivos serão exibidos apó o texto do conteúdo e antes da equipe, agrupados em dois divs:
+Atas e documentos. Esses divs serão retráteis, estando ambos retraídos, inicialmente. Ao expandir os divs de atas, serão exibidos os divs dos anos que, quando expandidos, exibem os documentos individuais.
+
+Abaixo, as propriedades do modelo de documento:
+
+pagina: nome da página de origem do documento, conforme convenção de nomenclatura (ex.: relacoesInternacionais (página), 2017-12-22-labfisio (notícia))
+_id: nome do documento, construído pela seguinte convenção: nomeDaPagina_dataDoUpLoad_nomeAmigavel em Camel Case
+tipo: ata, calendario, edital, diversos
+nomeAmigavel: nome a ser exibido no hiperlink. Para atas, segue a convenção: <numeroSessao> Sessão - <dataAmigavel></dataAmigavel>. 
+dataAmigavel: a data de realização da sessão no formato: <dia> de <mês> de <ano>
+numero seção
+dataReuniao: propriedade específica para atas, serve para ordenar as atas
+ano: propriedade específica para atas, agrupa estes documentos na pasta atas/<ano>.

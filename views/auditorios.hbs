@@ -1,0 +1,16 @@
+{{> header}}
+{{> topBarDesktop}}
+<main class="auditorios deslocar">
+    <h1>Reserva de espaços</h1>
+    <p>Selecione um dos espaços abaixo para solicitar a realização de eventos</p>
+    <div class="auditorios-wrapper">
+        {{#each auditorios}}
+            <a href="/reserva/{{this.id}}"><div class="auditorio">
+                <img src="/img/auditorios/{{this._id}}.jpg">
+                <h3>{{this.nome}}</h3>
+                <p>Capacidade: {{this.capacidade}} pessoas</p>
+                </div></a>
+        {{/ each}}
+    </div>
+</main>
+{{> footer}}

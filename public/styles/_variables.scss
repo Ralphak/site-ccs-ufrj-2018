@@ -1,0 +1,80 @@
+//////////////////// COLORS ////////////////////
+
+
+///////////cores do tema
+$turquesa: #116466;
+$turquesaTransparente: rgba(17, 100, 102, 0.65);
+$turquesaEscuro: #0f5253;
+$cinzaQuente: #2c3430;
+$bege: #d9b08c;
+$caque: #ffcb9a;
+$pele: #f2ebe6;
+$azulClaro: #d1e8e2;
+$textoPadrao: #555;
+$barro: #d04816;
+$vermelho: #be1717;
+$link: #2051d1;
+$linkHover: #507ff5/*darken ($link, 60%)*/;
+$fundoCinza: #f4f3f3;
+
+///////////Menus
+
+$topbarColor: $cinzaQuente;
+$n1Color: $turquesa;
+
+$selectedMenuColor: $turquesaEscuro;
+$selectedBorderColor: $cinzaQuente;
+$titleColor: #555;
+$menuN2: #f1e8e1;
+$menuN3: #e0d8d2;
+$menuN4: #d1c7be;
+
+//DESTAQUES
+$colorFundoNoticia:  rgba(0, 0, 0, 0.6);
+$colorFundoCaretRight:  rgba(44, 53, 49, 0.20);
+$colorFundoCaretLeft:  rgba(44, 53, 49, 0.60);
+$colorTituloNoticia: #fff;
+$leiaMaisColor: $cinzaQuente;
+
+//NOTICIAS
+
+//////////////////// FONTS ////////////////////
+
+$fonteCorpo: 'Open Sans', sans-serif;
+$fonteTitulo: "Roboto Condensed", sans-serif;
+
+
+//////////////////// SIZES ////////////////////
+$phabletsLow: 500px;
+$phabletsHi: 767px;
+$tabletsLow: 768px;
+$tabletsHi: 1023px;
+$desktopsLow: 1024px;
+$desktopsMid: 1300px;
+$desktopsHi: 1920px;
+$desktopsRetina: 5120px;
+$alturaTopbar: 80px;
+$alturaTopbar500: 100px;
+$alturaTopbarUp: 40px;
+$alturaTopbarUp500: 60px;
+$alturaTopbarDesktop: 50px;
+$barraGoverno: 33px;
+$alturaItemMenu: 60px;
+$alturaElemento: $alturaItemMenu - 1px;
+$alturaMinerva: 130px;
+$logoPeqWidth: 10em;
+$larguraMenuDesktop: 500px;
+$slideH3WidthDesktop: 85%;
+$slideButtonWidthDesktop: 120px;
+$larguraMaxima: 1300px;
+$larguraTextoDesktop: 700px;
+
+
+/////////////////////////OUTROS
+
+$boxShadow: 5px 5px 20px -2px rgba(0,0,0,0.3);
+$boxShadowCenter: 0 0 20px -2px rgba(0,0,0,0.3);
+$boxShadowHover: 0 0 8px -1px rgba(0,0,0,0.3);
+$boxShadowContato: 0 0 3px 0 rgba(0,0,0,0.45);
+$boxShadowCarrinho: 0 0 15px -2px rgba(0,0,0,0.4);
+$boxShadowTopBar: 3px 3px 10px -2px #222;

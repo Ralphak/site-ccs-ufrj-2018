@@ -1,0 +1,68 @@
+<div>
+    <label for="solicitante"><p>Solicitante:</p></label>
+    <input type="text" name="solicitante" id="solicitante" required  class="{{readonly}}" {{readonly}}>
+</div>
+<div>
+    <label for="matricula"><p>Matrícula (SIAPE ou DRE):</p></label>
+    <input type="text" name="matricula" id="matricula" required class="{{readonly}}"  {{readonly}}>
+</div>
+<div class="ds-categoria">
+    <label for="categoria">
+        <p>Categoria:</p>
+    </label>
+</div>
+<div class="div-unidade">
+    <label for="unidade"><p>Unidade:</p></label>
+    <i class="fa fa-info"></i>
+        <span class="dica">Informar pelo menos três caracteres do nome ou da sigla da unidade no campo abaixo e confirmar a seleção, clicando na lista que será exibida. Constam, na lista, as Unidades Acadêmicas, Suplementares e a Unidade Administrativa do CCS (Decania do CCS)</span>
+    <div class="input-unidade-wrapper">
+        <input type="text" autocomplete='off' name="unidade" id="unidade" class="{{readonly}}" {{readonly}} required>
+    </div>
+    <div class="div-unidades">
+        <!-- array de unides do CCS -->
+    </div>
+</div>
+<div>
+    <label for="cargo"><p>Cargo ou função:</p></label>
+    <input type="text" name="cargo" id="cargo" class="{{readonly}}" required>
+</div>
+<div>
+    <label for="localTrabalho">
+        <p>Localização para contato:</p>
+        <i class="fa fa-info"></i>
+        <span class="dica">Prédio, bloco e sala</span>
+    </label>
+    <input type="text" name="localTrabalho" id="localTrabalho" required class="{{readonly}}" {{readonly}}>
+</div>
+<div>
+    <label for="local">
+        <p>Local do serviço (onde foi constatado o problema):</p>
+        <i class="fa fa-info"></i>
+        <span class="dica">Prédio, bloco e sala</span>
+    </label>
+    <input type="text" name="local" id="local" required class="{{readonly}}" {{readonly}}>
+</div>
+<div>
+    <label for="telefone"><p>Telefone:</p></label>
+    <input type="text" name="telefone" id="telefone" class="{{readonly}}" {{readonly}}>
+</div>
+<div>
+    <label for="email"><p>E-mail:</p></label>
+    <input type="email" name="email" id="email" class="{{readonly}}" required {{readonly}}>
+</div>
+<div>
+    <label for="horarios-disponiveis-manutencao">
+        <p>Horários:</p>
+        <i class="fa fa-info"></i>
+        <span class="dica">Dias e horários à disposição para receber a equipe de manutenção</span>
+    </label>
+    <input type="text" name="horarios-disponiveis-manutencao" id="horarios-disponiveis-manutencao" required class="{{readonly}}" {{readonly}}>
+</div>
+<div>
+    <label for="descricao"><p>Descrição do problema:</p></label>
+    <textarea name="descricao" id="descricao" required class="{{readonly}}" {{readonly}}></textarea><br>
+</div>
+<div>
+    <label for="obs"><p>Observações:</p></label>
+    <textarea name="obs" id="obs" class="{{readonly}}" {{readonly}}></textarea><br>
+</div>

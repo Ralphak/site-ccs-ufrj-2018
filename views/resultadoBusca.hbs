@@ -1,0 +1,114 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<section class="resultados-busca deslocar">
+    <main>
+        <div id="refinar-busca" class="refinar-busca-div">
+            <h3>Refine sua busca</h3>
+            <i class="icone-refinar-busca fa fa-caret-down"></i>
+        </div>
+        <div id="filtro-resultados" class="filtro-resultados">
+            <form method="get" class="formulario" id="formFiltro" action="/busca/1">
+                <div>
+                    <label for="input-busca"><p>Buscar por</p></label>
+                    <input type="text" name="input-busca" id="input-busca" value="">
+                </div>
+                <div>
+                    <label for="resultadosPorPagina"><p>Resultados por página</p></label><br>
+                    <select name="resultadosPorPagina" id="resultadosPorPagina">
+                        <option selected value=10>10</option>
+                        <option value=25>25</option>
+                        <option value=50>50</option>
+                    </select>
+                </div>
+                <div id="classificacao">
+                    <p>Mostrar conteúdos<p>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao0" value="pagina">
+                        <label for="classificacao0"><span></span>Páginas</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao1" value="noticia">
+                        <label for="classificacao1"><span></span>Notícias</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao2" value="evento">
+                        <label for="classificacao2"><span></span>Eventos</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao3" value="informe">
+                        <label for="classificacao3"><span></span>Informes</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao4" value="video">
+                        <label for="classificacao4"><span></span>Vídeos</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao5" value="foto">
+                        <label for="classificacao5"><span></span>Fotos</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="classificacao" id="classificacao6" value="depoimento">
+                        <label for="classificacao6"><span></span>Depoimentos</label>
+                    </div>
+                </div>
+                <div>
+                    <p>Relação entre os termos<p>
+                    <div>
+                        <input type="radio" name="relacaoTermos" id="relacaoTermos0" value="todas">
+                        <label for="relacaoTermos0"><span></span>Todas as palavras</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="relacaoTermos" id="relacaoTermos1" value="qualquer">
+                        <label for="relacaoTermos1"><span></span>Qualquer palavra</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="relacaoTermos" id="relacaoTermos2" value="exata">
+                        <label for="relacaoTermos2"><span></span>Frase exata</label>
+                    </div>
+                </div>
+                <div id="ordenacao">
+                    <p>Ordenação<p>
+                    <div>
+                        <input type="radio" name="ordenacao" id="ordenacao0" value="maisRecentes">
+                        <label for="ordenacao0"><span></span>Mais recentes primeiro</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="ordenacao" id="ordenacao1" value="maisAntigos">
+                        <label for="ordenacao1"><span></span>Mais antigos primeiro</label>
+                    </div>
+                </div>
+                <div id="intervaloDesde">
+                    <label for="dataDesde"><p>Desde</p></label><br>
+                    <select name="dataDesde" id="dataDesde">
+                        <option selected value=0>o início</option>
+                        <option value=12>um ano</option>
+                        <option value=6>6 meses</option>
+                        <option value=3>3 meses</option>
+                        <option value=1>um mês</option>
+                    </select>
+                </div>
+                <div id="intervaloAte">
+                    <label for="dataAte"><p>Até</p></label><br>
+                    <select name="dataAte" id="dataAte">
+                        <option value=12>um ano</option>
+                        <option value=6>6 meses</option>
+                        <option value=3>3 meses</option>
+                        <option value=1>um mês</option>
+                        <option selected value=0>hoje</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="submit" id="btn-submit" value="Filtrar">
+                </div>
+            </form>
+        </div>
+        <h1>Resultados da busca</h1>
+        <div class="resultados-container">
+            <a class="flexbox-hack" href="#"><article class="conteudo empty"></article></a>
+        </div>
+    </main>
+    <div id="resultados-busca-paginas"></div>
+</section>
+{{> footer}}
+<script src="/dist/scripts/busca.min.js"></script>

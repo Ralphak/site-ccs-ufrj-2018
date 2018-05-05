@@ -1,0 +1,51 @@
+{{> header}}
+{{> topBarDesktop}}
+<main class="live-videos deslocar">	
+	<h1 class='live-videos__title'></h1>
+	<div class="live-videos__dados">
+		<h3>Transmissão ao vivo |</h3>
+		<div class='live-videos__data'></div>
+		<div class='live-videos__hora'></div>
+	</div>
+	<div class="iframe-container">
+		{{!-- qualquer evento, em qualquer hora --}}
+		{{!-- <iframe class='live-videos__iframe-video' src="http://www.youtube.com/embed/live_stream?channel=UCcGIsM94kfLLKvxcJy29iNw" frameborder="0" allowfullscreen></iframe> --}}
+	</div>	
+</main>
+
+<script defer='defer'>
+	document.addEventListener('DOMContentLoaded', async () => {  
+		let videosAnteriores =[], proximosVideos = [], nextStreaming, agora;
+		const getVideos = await variaveisGlobais.ajax("/liveStream", 'get', null);
+		agora = moment(new Date()).format("YYYY-MM-DD");
+		for (let i = getVideos.length -1; i >= 0; i--) {
+			let dataEvento = moment(getVideos[i].dataDeExibicao).format("YYYY-MM-DD");
+			dataEvento < agora ? videosAnteriores.push(getVideos[i]) : proximosVideos.push(getVideos[i]);		
+		}
+		if (proximosVideos.length > 0) {
+			let nextStreaming, videoID, src, iFrameVideo, iFrameChat;
+			nextStreaming = proximosVideos.splice(0, 1);	
+			videoID = nextStreaming[0].midia;
+			src = `https://www.youtube.com/embed/${videoID}?rel=0`;
+			iFrameVideo = `<iframe class='iframe-video' src="${src}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+			if (window.innerWidth > 1024) {
+				iFrameChat = `<div style='width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 25px;'><i style='font-size: 3rem; color: #be1717; padding-right: 20px;' class='fa fa-comments'></i><h2 style='padding: 15px 0;'>chat ao vivo</h2></div><iframe class='iframe-chat' src="https://www.youtube.com/live_chat?v=${videoID}&embed_domain=www.ccs.ufrj.br"></iframe>`;
+			} else {
+				iFrameChat = `<div style='width: 100%; margin-bottom: 90px;'><h2>chat ao vivo no no</h2><a href='https://youtu.be/${videoID}' target='_blank'><i style='color: #be1717; font-size: 6rem; width: 100%; text-align: center; margin-top: 20px;' class='fa fa-youtube'></i></a>`
+			}
+			document.querySelector('.iframe-container').insertAdjacentHTML('beforeend', iFrameVideo);
+			document.querySelector('.live-videos__title').innerHTML = nextStreaming[0].titulo;
+			if(moment(new Date()).format("YYYY-MM-DD:HH:mm") >= moment(nextStreaming[0].dataDeExibicao).add(3, 'hours').format("YYYY-MM-DD:HH:mm")) {
+				document.querySelector('.iframe-container').insertAdjacentHTML('beforeend', iFrameChat);
+			} else {				
+				document.querySelector('.live-videos__data').innerHTML = `<div><i class='fa fa-calendar fa-fw live-videos__icone live-videos__calendario'></i> <h3>${moment(nextStreaming[0].dataDeExibicao).format("DD [de] MMMM [de] YYYY")}</h3></div>`;	
+				document.querySelector('.live-videos__hora').insertAdjacentHTML('beforebegin', ``);
+				document.querySelector('.live-videos__hora').innerHTML = ` <div><i class='fa fa-clock-o fa-fw live-videos__icone live-videos__relogio'></i><h3>${moment(nextStreaming[0].dataDeExibicao).add(3, 'hours').format("HH:mm[h]")}</h3>`;	
+				document.querySelector('.iframe-container').insertAdjacentHTML('beforeend', `<div class='live-videos__descricao-container'><div class="live-videos__descricao">${nextStreaming[0].texto}<div></div>`);
+			}				
+		} else {
+			document.querySelector('.iframe-container').innerHTML = `<h1 style='height: 30vh'>Não há eventos programados para exibição ao vivo</h1>`;
+		}
+	});
+</script>
+{{> footer}}

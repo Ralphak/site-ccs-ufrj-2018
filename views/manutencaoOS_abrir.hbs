@@ -1,0 +1,21 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="deslocar manutencao-abrir-os">
+    <h1>Nova Ordem de Serviço</h1>
+    <h3 class="centralizado">Preencha os campos abaixo para abrir uma ordem de serviço</h3>
+    <div id="form-wrap">
+        <form method="post" class="formulario" enctype="multipart/form-data" id="form-os" action="/manutencao/abrirOS">
+            <div class="hidden">
+                <input type="text" readonly name="idDS" id="idDS" value="{{id}}">
+            </div>
+            {{> formOS}}
+            <div>
+                <input type="submit" id="btn-submit" value="enviar">
+            </div>
+        </form>
+    </div>
+</main>
+<script src="/dist/scripts/manutencao.min.js"></script>
+<link rel="stylesheet" href="/dist/styles/manutencao.min.css">
+{{> footer}}

@@ -1,0 +1,13 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="inserir-conteudo deslocar">
+    <h1>Registro de conteúdos</h1>
+    <form action="/conteudos/inserir" method="post" name="novo-conteudo" class="formulario" enctype="multipart/form-data" id="inserir-conteudo">
+        {{> formConteudo}}
+    </form>
+</main>
+
+<script src="/dist/scripts/conteudos.min.js"></script>
+<script src="/dist/scripts/anexar_arquivos.min.js"></script>
+{{> footer}}

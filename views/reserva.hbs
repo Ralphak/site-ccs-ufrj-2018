@@ -1,0 +1,80 @@
+{{> header}}
+{{> topBarDesktop}}
+<div id="botao-carrinho">
+    <i class="fa fa-calendar-check-o"></i>
+</div>
+<main id="{{auditorio._id}}" class="reserva reservar-auditorio deslocar">
+    <div id="overlay" class="overlay hidden opacidade-zero"></div>
+    <div class="auditorio">
+        <img src="/img/auditorios/{{auditorio._id}}.jpg">
+        <h3>{{auditorio.nome}}</h3>
+    </div>
+    <p id="aviso-reserva">Preencha o formulário abaixo para submeter um pedido de reserva. Reiteramos que a submissão não implica a aprovação automática do pleito, que será avaliado levando-se em consideração critérios estabelecidos pela Decania do CCS.</p>
+    <form method="post" class="formulario" id="formReserva" action="/reserva">
+        <input name="auditorio" class="hidden" readonly value="{{auditorio._id}}">
+        <input name="auditorioNome" class="hidden" readonly value="{{auditorio.nome}}">
+        <div>
+            <label for="evento"><p>Evento:</p></label>
+            <input type="text" name="evento" id="evento" required>
+        </div>
+        <div>
+            <label for="nomeResponsavel"><p>Nome do Responsável pelo evento:</p></label>
+            <input type="text" name="nomeResponsavel" id="nomeResponsavel" required>
+        </div>
+        <div>
+            <label for="emailResponsavel"><p>E-mail: </p></label>
+            <input type="email" name="emailResponsavel" id="emailResponsavel" required>
+        </div>
+        <div>
+            <label for="telResponsavel"><p>Telefone:</p></label>
+            <span class="dica">*opcional</span>
+            <input type="tel" name="telResponsavel" id="telResponsavel">
+        </div>
+
+        <div id="publico-container">
+            <label for="publico"><p>Público esperado:</p></label>
+            <input type="number" class="inputNumber" name="publico" id="publico" min="0" max="{{auditorio.capacidade}}" required> pessoas
+            <span class="hidden capacidade-auditorio">O público esperado deve ser igual ou menor que a capacidade do auditório, {{auditorio.capacidade}} pessoas.</span>
+        </div>
+        <div>
+            <label for="naturezaEvento"><p>Natureza do evento</p></label><br>
+            <select name="naturezaEvento" id="naturezaEvento" required>
+                <option disabled selected value="">Selecione uma opção:</option>
+
+            </select>
+        </div>
+        <div>
+            <label for="informacoesComplementares"><p>Especificações do pedido:</p>
+                <i class="fa fa-info"></i>
+                <span class="dica">Especifique, se necessário, recursos audiovisuais necessários à realização do evento. Quaisquer outras considerações  podem ser feitas, também, neste espaço.</span>
+            </label>
+            <textarea name="informacoesComplementares" id="informacoesComplementares" required></textarea>
+        </div>
+        <div>
+            <label for="datepickerDiaEvento"><p>Seleção de dias e horários</p></label>
+            <div id="datepickerDiaEvento"></div>
+        </div>
+        <div>
+            <input type="text" class="hidden" name="horarios" id="horarios">
+        </div>
+        <div class="reservas-dia-container">
+        <!--AGENDA AQUI-->
+        </div>
+        <div class="legenda hidden">
+            <div class="legenda-item">
+                <div class="legenda-reservado"></div> <span>Horário reservado</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-analise"></div> <span>Pedido em análise</span>
+            </div>
+        </div>
+        <div>
+            <button type="submit" id="btn-submit">Enviar</button>
+        </div>
+    </form>
+
+    <div id="carrinho-horarios"><h3>Resumo do pedido:</h3><i class="fa fa-times fechar-carrinho"></i><div class='carrinho-vazio'><p class="text-shadow-inset">Adicione ao menos um horário para enviar seu pedido de reserva</p></div></div>
+    <div class="janela hidden opacidade-zero" id="adicionar-horarios">
+    </div>    
+</main>
+{{> footer}}

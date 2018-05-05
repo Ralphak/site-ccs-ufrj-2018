@@ -1,0 +1,46 @@
+{{> header}}
+{{> topBarDesktop}}
+<div id="overlay" class="overlay hidden opacidade-zero"></div>
+<main class="analise-requisicoes deslocar">
+    <h1>Requisições</h1>
+    <h2 class="status-requisicoes"></h2>
+    <div class="card-container">
+        <div class="card-div requisicoes-reservas-div">            
+        </div>
+    </div>
+
+    <h2>Pedidos já agendados</h2>
+    <h2 class="status-agendados"></h2>
+    <div class="card-container">
+        <div class="card-div requisicoes-agendados-div">           
+        </div>
+    </div>
+
+    <form method="post" action="/reserva/analise/recusar" id="form-recusar-reserva" class="formulario janela hidden opacidade-zero">
+        <input type="text" name = "idReservaRecusar" id="input-recusar-reserva" readonly class="hidden">
+        <h3 class="header">Confirmação de exclusão</h3>
+        <h2>Tem certeza que deseja recusar o pedido de reserva? Esta ação não poderá ser desfeita</h2>        
+        <div>
+            <div class="recusar-justificativa">
+                <label for="justificativa"><p>Justificativa</p>
+                    <i class="fa fa-info"></i>
+                    <span class="dica">A justificativa é opcional</span>
+                </label>
+                <textarea name="justificativa" id="justificativa" ></textarea>
+            </div>
+            <button class="retornar">retornar</button>
+            <input type="submit" value="recusar" class="recusar">
+        </div>
+    </form>
+    <form method="post" action="/reserva/analise/confirmar" id="form-confirmar-reserva" class="formulario janela hidden opacidade-zero">
+        <input type="text" name = "idReservaConfirmar" id="input-confirmar-reserva" readonly class="hidden">
+        <h3 class="header">Confirmação de reserva</h3>
+        <h2>Tem certeza que deseja confirmar o pedido de reserva? Esta ação não poderá ser desfeita</h2>        
+        <div>
+            <button class="retornar">retornar</button>
+            <input type="submit" value="confirmar" class="confirmar">
+        </div>
+
+    </form>
+</main>
+{{> footer}}

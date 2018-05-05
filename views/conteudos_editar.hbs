@@ -1,0 +1,20 @@
+{{> header}}
+{{> topBarDesktop}}
+
+<main class="editar-conteudo deslocar">
+    <h1>Editar Conteúdo</h1>
+    <form action="/conteudos/editar/{{id}}" method="post" name="novo-conteudo" id="{{id}}" class="formulario" enctype="multipart/form-data" accept-charset="utf-8">
+        {{> formConteudo}}
+    </form>
+
+    <span class="fa-stack fa-2x apagar-arquivos-icone hidden">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-stack-1x fa-trash-o"></i>
+    </span>
+    {{!-- <div class='apagar-arquivos-icone-div'>
+        <i class="fa fa-trash-o apagar-arquivos-icone"></i>
+    </div> --}}
+</main>
+<script src="/dist/scripts/conteudos.min.js"></script>
+<script src="/dist/scripts/anexar_arquivos.min.js"></script>
+{{> footer}}

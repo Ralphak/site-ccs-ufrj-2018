@@ -1,0 +1,66 @@
+{{> header}}
+{{> topBarDesktop}}
+<div id="localizar-conteudos-overlay" class="overlay hidden opacidade-zero"></div>
+<main class="localizar-conteudos deslocar">
+    <div class="conteudos-container">
+        <h1>Localizar conteúdos</h1>
+
+        <form action="/recuperarConteudo" method="get" id="localizar-conteudo" class="formulario" accept-charset="utf-8">
+            <div>
+                <label for="query"><p>Digite uma ou mais palavras-chave. Deixe em branco para listar todos os conteúdos.</p></label>
+                <input type="text" name="query" id="query" placeholder="termos de busca">
+            </div>
+            <div class="destaque">
+                <div>
+                    <input type="checkbox" name="destaque" id="destaque">
+                    <label for="destaque"><span></span></label>
+                </div>
+                <p>Buscar apenas entre os destaques</p>
+            </div>
+            <div id="natureza">
+                <p>natureza do conteúdo</p>
+                <div class="naturezas">
+                    <div>
+                        <input type="checkbox" name="natureza" id="pagina">
+                        <label for="pagina"><span></span>página</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="noticia">
+                        <label for="noticia"><span></span>notícia</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="evento">
+                        <label for="evento"><span></span>evento</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="informe">
+                        <label for="informe"><span></span>informe</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="video">
+                        <label for="video"><span></span>vídeo</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="foto">
+                        <label for="foto"><span></span>foto</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="natureza" id="depoimento">
+                        <label for="depoimento"><span></span>depoimentos</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="submit" id="btn-submit" value="localizar">
+            </div>
+        </form>
+        <div id="resultados-busca-conteudo-container">
+            <img class="loading conteudo hidden" src="/img/loading.svg">
+        </div>
+    </div>
+
+</main>
+<script src="/dist/scripts/conteudos.min.js"></script>
+
+<script src="/dist/scripts/contatos.min.js"></script>
+{{> footer}}

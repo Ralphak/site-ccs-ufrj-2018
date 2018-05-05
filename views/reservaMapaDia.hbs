@@ -1,0 +1,19 @@
+{{> header}}
+{{> topBarDesktop}}
+<div id="reservas-dia-wrapper">
+    <main id="main-atividades-dia" class="formulario">
+        <h1>Mapa de atividades</h1>
+        <span class="subtitulo-h1">(todos os espaços)</span>
+        <div>
+            <label for="datepickerMapaDia"><p>Selecione um dia para gerar o mapa de atividades:</p></label>
+            <div id="datepickerMapaDia"></div>
+        </div>
+        <div>
+            <input type="text" class="hidden opacidade-zero" name="dia" id="dia">
+        </div>
+    </main>
+    <div id="reservas-dia"></div>
+</div>
+<script src="/dist/scripts/agendaConsulta.min.js"></script>
+<script src="/dist/scripts/reservasMapasAtividades.min.js"></script>
+{{> footer}}

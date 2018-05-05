@@ -1,0 +1,5 @@
+{
+  "plugins": ["transform-es2015-arrow-functions", "transform-async-to-generator"],
+  "presets": ["es2015", "minify", "stage-0"]
+}
+

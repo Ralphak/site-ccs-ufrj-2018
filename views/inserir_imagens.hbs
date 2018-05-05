@@ -1,0 +1,60 @@
+{{> header}}      
+{{> topBarDesktop}}         
+    <h1>Inserir imagens</h1>           
+                
+    <form action="/inserirImagens" method="post" name="myForm" id="enviar-conteudo" class="formulario" enctype="multipart/form-data" accept-charset="utf-8">
+        <select name="tipo-imagem" id="tipo-imagem" required>
+            <option disabled selected value="">Selecione uma opção:</option>
+            <option value="conteudos">conteudos</option>
+            <option value="depoimentos">personagem em foco</option>
+            <option value="usuarios">fotos de usuários</option>            
+        </select>
+        <div class="btn-acao btn-inserir-arquivos">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            <span>inserir arquivo</span>
+        </div>
+        <div class="file-upload">
+            <p>Enviar arquivos</p>
+            <div class="anexo0">
+                <div class="texto texto-anexo0"></div>
+                <label class="label-upload" for="anexo0" id="label-anexo0">
+                    <i class="fa fa-upload"></i><span class="span-anexar">Anexar Arquivo</span>
+                </label>
+                <input type="file" name="anexo" id="anexo0" class="anexo">
+            </div>
+            <div class="anexo1">
+                <div class="texto texto-anexo1"></div>
+                <label class="label-upload" for="anexo1" id="label-anexo1">
+                    <i class="fa fa-upload"></i><span class="span-anexar">Anexar Arquivo</span>
+                </label>
+                <input type="file" name="anexo" id="anexo1" class="anexo">
+            </div>
+            <div class="anexo2">
+                <div class="texto texto-anexo2"></div>
+                <label class="label-upload" for="anexo2" id="label-anexo2">
+                    <i class="fa fa-upload"></i><span class="span-anexar">Anexar Arquivo</span>
+                </label>
+                <input type="file" name="anexo" id="anexo2" class="anexo">
+            </div>
+            <div class="anexo3">
+                <div class="texto texto-anexo3"></div>
+                <label class="label-upload" for="anexo3" id="label-anexo3">
+                    <i class="fa fa-upload"></i><span class="span-anexar">Anexar Arquivo</span>
+                </label>
+                <input type="file" name="anexo" id="anexo3" class="anexo">
+            </div>
+            <div class="anexo4">
+                <div class="texto texto-anexo4"></div>
+                <label class="label-upload" for="anexo4" id="label-anexo4">
+                    <i class="fa fa-upload"></i><span class="span-anexar">Anexar Arquivo</span>
+                </label>
+                <input type="file" name="anexo" id="anexo4" class="anexo">
+            </div>
+        </div>
+        <div>
+            <input type="submit" id="btn-submit" value="Enviar">
+        </div>
+    </form>
+    <script src="/dist/scripts/conteudos.min.js"></script>
+    <script src="/dist/scripts/anexar_arquivos.min.js"></script>
+{{> footer}}

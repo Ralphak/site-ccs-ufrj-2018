@@ -1,0 +1,24 @@
+{{> header}}
+<main class="agenda deslocar">
+    <h1>Agenda</h1>
+    <div id="consulta-agenda">
+        <div id="datepickerDiaEvento"></div>
+        <!--<div>
+            <input type="text" class="hidden" readonly name="horarios" id="horarios">
+        </div>  -->
+        {{#each agenda}}
+            {{{this}}}
+        {{/ each}}
+
+        <div class="legenda">
+            <div class="legenda-item">
+                <div class="legenda-reservado"></div> <span>Horário reservado</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-analise"></div> <span>Pedido em análise</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+{{> footer}}

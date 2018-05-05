@@ -1,0 +1,123 @@
+{{> mapaSite}}
+        {{#unless auditorio}}
+            {{> agendaSuspensa}}
+        {{/unless}}
+        <footer class="footer deslocar">
+            <div class="footer-login login-form">
+                {{#if usuario}}
+                    {{> atalhosUsuario}}
+                {{else}}
+                    <div class="footer-login-header visitante">
+                        <!--<p>login</p>--><i class="fa fa-user"></i>
+                        <i class="fa fa-caret-down seta"></i>
+                    </div>
+                    <form method="post" class="" id="formLoginRodape" action="/login">
+                        <div>
+                            <label for="email-login-footer"><p>e-mail:</p></label>
+                            <input type="email" name="email" id="email-login-footer" required>
+                        </div>
+                        <div>
+                            <label for="senha-login-footer"><p>senha:</p></label>
+                            <input type="password" name="senha" id="senha-login-footer" required>
+                            <a href="/alterarsenha" class="mensagens-login">esqueci minha senha</a>
+                        </div>
+                        <div>
+                            <button type="submit" class="mensagens-login">Entrar</button>
+                        </div>
+                    </form>
+                {{/if}}
+            </div>
+
+            <div class="footer-endereco footer-section">
+                <div class="footer-minerva">
+                    <img src="/img/minervaFooter.png">
+                </div>
+                <h1>CENTRO DE CIÊNCIAS DA SAÚDE</h1>
+                <hr>
+                <h2>UFRJ</h2>
+                <div class="footer-decania-contato">
+                    <a target="_blank" href="https://goo.gl/maps/wWfRpxDbuWD2" target="_blank" class="mapa">
+                        <h3><i class="fa fa-map-marker"></i></h3>
+                        <div>
+                            <p>Avenida Carlos Chagas Filho, 373</p>
+                            <p>Cidade Universitária | Rio de Janeiro</p>
+                            <p>RJ - CEP: 21941-590</p>
+                        </div>
+                    </a>
+                    <div class="footer-phone">
+                        <div>
+                            <a href="tel:21-3938-6705"><h3><i class="fa fa-phone"></i></h3>
+                            <p>(21) 3938-6705</p></a>
+                        </div>
+                    </div>
+                    <div class="footer-mail">
+                        <div>
+                            <a href="mailto:decano@ccsdecania.ufrj.br"><h3><i class="fa fa-envelope"></i></h3>
+                            <p>decano@ccsdecania.ufrj.br</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-outros">
+                <div class="footer-contatos footer-section">
+                    <h3>CONTATOS</h3>
+                    <div class="contatos">
+                        <a href="/equipeDecania"><h3><i class="fa fa-users"></i></h3><p>equipe</p></a>
+                        <a href="/faleConosco"><h3><i class="fa fa-envelope"></i></h3><p>fale conosco</p></a>
+                        <a href="tel:21-3938-1900"><h3><i class="fa fa-shield"></i></h3><p>segurança</p></a>
+                    </div>
+                </div>
+                <div class="footer-website footer-section">
+                    <h3>WEBSITE E SISTEMAS</h3>
+                    <div class="website">
+                        <a href="/" class="mapa-div"><h3><i class="fa fa-map"></i></h3><p>mapa do site</p></a>
+                        <a href="mailto:ascom@ccsdecania.ufrj.br"><h3><i class="fa fa-envelope"></i></h3>
+                        <p>ascom@ccsdecania.ufrj.br</p></a>
+                    </div>
+                </div>
+                <div class="footer-redes-sociais footer-section">
+                    <h3>REDES SOCIAIS</h3>
+                    <div class="redes">
+                        <a target="_blank" href="https://www.facebook.com/ccsufrj/"><i class="fa fa-facebook-square"></i></a>
+                        <i class="fa fa-youtube-play"></i>
+                        <i class="fa fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-ascom">
+                <p>©2017 ASCOM | Decania do Centro de Ciências da Saúde</p>
+                <p>todos os direitos reservados</p>
+            </div>
+
+        </footer>
+
+        {{!-- descomentar esses scripts em desenvolvimento, comentar em produção,  --}}
+        {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js"></script> --}}
+
+        {{!-- comentar esse script em desenvolvimento, descomentar em produção --}}
+        <script src="/dist/scripts/bundleU8.min.js"></script>
+
+
+        <script src="//barra.brasil.gov.br/barra.js"></script>
+
+        {{!-- descomentar esses scripts em desenvolvimento, comentar em produção --}}
+        {{!-- <script src="/dist/scripts/datepicker-pt-BR.min.js"></script>
+        <script src="/dist/scripts/script.min.js"></script> --}}
+
+    
+        {{#if auditorio}}
+            <script src="/dist/scripts/reservas.min.js"></script>
+        {{/if}}
+        {{#unless auditorio}}
+            <script src="/dist/scripts/agendaConsulta.min.js"></script>
+        {{/unless}}
+
+        {{#if analisePedidos}}
+            <script src="/dist/scripts/reservasAnalise.min.js"></script>
+        {{/if}}
+    </div> <!--fechamento do wrapper-->
+    </body>
+</html>

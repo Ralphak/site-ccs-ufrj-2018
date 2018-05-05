@@ -1,0 +1,24 @@
+<div class="login-form-desktop login-form">
+    {{#if usuario}}
+        {{> atalhosUsuario}}
+    {{else}}
+        <div class="login-header visitante">
+            <p>log-in</p><i class="fa fa-user"></i>
+            <i class="fa fa-caret-down seta login-seta"></i>
+        </div>
+        <form method="post" class=" formulario form-login-topbar" id="form-login-topbar" action="/login">
+            <div>
+                <label for="email-topbar"><p>e-mail:</p></label>
+                <input type="email" name="email" id="email-topbar" required>
+            </div>
+            <div>
+                <label for="senha-topbar"><p>senha:</p></label>
+                <input type="password" name="senha" id="senha-topbar" required>
+                <a href="/alterarsenha" class="mensagens-login">esqueci minha senha</a>
+            </div>
+            <div>
+                <button type="submit" class="mensagens-login">Entrar</button>
+            </div>
+        </form>
+    {{/if}}
+</div>

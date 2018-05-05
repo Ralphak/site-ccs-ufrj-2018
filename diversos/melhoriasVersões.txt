@@ -1,0 +1,54 @@
+﻿Atualização 1
+
+Vinculação de arquivos a conteúdos (atas, imagens, arquivos diversos);
+Aprimoramento do módulo de upload de arquivos;
+Pequenas mudanças de layout;
+Implementação de rótulos para identificação de subtipo de vídeo;
+
+Atualização 2
+Correção de bug na impressão de Demandas e Ordens de Serviço;
+Melhorias diversas na interface de upload de arquivos;
+Novos links inseridos via tinyMCE abrem, por padrão, em uma nova janela;
+
+Atualização 3
+Módulos para deletar demandas e ordens de serviço;
+Reparo da funcionalidade de listar demandas por estado (ativas e/ou concluídas);
+Estatísticas de manutenção;
+Finalização do módulo de upload de arquivos diversos;
+Otimizações severas - concatenação dos arquivos de scripts e estilos;
+Incorporação no servidor dos scripts que eram chamados via CDN;
+
+atualização 4
+Envio de mensagens por parte dos solicitantes de manutenção, no log de eventos;
+Autocompleição dos nomes das Unidades;
+
+atualização 5
+Busca textual para Demandas de Serviço;
+
+Atualização 6
+Aprimoramentos de estilo;
+Ícone do youtube nos resultados de busca por vídeos;
+Ícone do instagram nos resultados de buscas por imagem;
+Seleção e eliminação de arquivos vinculados a conteúdos, no módulo de edição de conteúdos;
+Eliminação de arquivos vinculados a notícias, eventos e informes, quando o respectivo conteúdo é eliminado;
+
+Atualização 7
+Reformulação do módulo de reserva de espaços, de modo a permitir solicitações com sobreposições de horários;
+Reformulação do módulo de busca, transferindo as rotinas de renderização para os browsers;
+Criada página para exibição de vídeos com transmissão ao vivo;
+Estatísticas de demandas de serviço por Unidade;
+Link para oportunidades e editais, no menu principal, direcionado para resultados de busca (palavra-chave: 'opurtunidades&editais');
+Omissão da meta tag open graph de imagens para conteúdos que não têm imagens vinculadas
+Atas ordenadas em função da data de realização da sessão;
+Rodapé padrão em mensagens enviadas por e-mail;
+Ocultadas as referências ao sistema de reserva de espaços e à agenda de eventos, até a inauguração do sistema;
+Validação de arquivos de imagem enviados anexos às demandas de serviço;
+Correção dos links de arquivos diversos vinculados a conteúdos; 
+
+Atualização 7.5
+Aprimoramentos na validação da inserção de anexos em conteúdos;
+
+Atualização 8
+correção de pequeno bug na inserção de anexos, quando 'check' do arquivo é clicado duas vezes consecutivas.
+Rotinas para gerenciamento e exibição de vídeos transmitidos ao vivo;
+substituição da propriedade 'resumo' de conteúdos pela substring dos respectivos textos, sem tags HTML

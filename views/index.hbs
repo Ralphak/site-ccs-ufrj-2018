@@ -1,0 +1,105 @@
+{{> header}}
+<div class="hidden opacidade-zero">Sítio eletrônico do Centro de Ciências da Saúde da UFRJ. O Centro de Ciências da Saúde (CCS) da Universidade Federal do Rio de Janeiro (UFRJ) compõe unidades de ensino, pesquisa e extensão desta universidade. É composto por dez unidades e 14 órgãos suplementares, tendo um total de 8 500 alunos nos cursos de graduação e pós-graduação, 1 200 professores, além de 5 200 servidores técnico-administrativos.</div>
+<div class="slideshow">    
+    <div class="slides-container">
+        <img class="loading" src="/img/loading.svg">
+    </div>
+</div>
+{{> topBarDesktop}}
+<div class="homepage deslocar">
+    <article class="sobre-o-ccs">
+        <div class="container">
+            <div class="frase">
+                <p class="sobre-o-ccs-frase">Na Universidade se ensina porque se pesquisa.</p>
+                <span class="quotes">“</span>
+                <span class='autor'>Prof. Carlos Chagas Filho</span>
+            </div>
+            <div class="foto-ccf">
+                <img src="/img/ccf.gif">
+            </div>
+        </div>
+    </article>
+    <div class="acesso-rapido">
+        <div><h2>ACESSO RÁPIDO</h2><i id="acesso-rapido-controle" class="fa fa-caret-down"></i></div>
+        {{>acessoRapido}}
+    </div>
+    <div id="secoes">
+        <section id="secao-noticias" class="noticias index-secao">
+            <div class="div-angle">
+                <i class="fa fa-angle-down fa-angle abertura-div-angle"></i>
+            </div>
+            <div class="div-icon"><i class="fa fa-newspaper-o text-shadow-inset icone-secao"></i><h2>DESTAQUES</h2></div>
+            <div class="card-container">
+                <div class="card-div cards-destaques">
+                    <section class="secao-destaques">
+                        <img class="loading conteudo-index" src="/img/loading.svg">
+                    </section>
+                    <section class="secao-conteudos-recentes">
+                        <h3 class="titulo">Recentes</h3>
+                        <img class="loading conteudo-index" src="/img/loading.svg">
+                    </section>
+                </div>
+            </div>
+            <div class="button-div">
+                <a href="/busca/1?input-busca=&resultadosPorPagina=10&classificacao=noticia&classificacao=evento&classificacao=informe&relacaoTermos=todas&ordenacao=maisRecentes&dataDesde=0&dataAte=0"><button>mais notícias</button></a>
+            </div>
+        </section>
+        <section id="secao-depoimentos" class="depoimentos index-secao">
+            <div class="div-angle">
+                <i class="fa fa-angle-down fa-angle abertura-div-angle"></i>
+            </div>
+            <div class="div-icon"><i class="fa fa-pencil text-shadow-inset icone-secao"></i><h2>PERSONAGEM EM FOCO</h2></div>
+            <div class="container">
+                <div class="depoimentos-identificacao">
+                    <img src="/img/depoimentos/depoimento_2018-01-11-VitoriaAlbuquerque.jpg" alt="foto Vitoria Albuquerque">
+                    <span class="nome">Vitoria Albuquerque</span>
+                    <span class="titulo">Discente do Curso de Bacharelado em Dança</span>
+                </div>
+                <p class="depoimento">"A arte intensifica a vida, e é nesse lugar que quero estar, nesse lugar de intensificação da vida" <a href='/conteudos/2018-01-11-vitoriaAlbuquerque'><span class="leia-mais">Leia o depoimento na íntegra</span></a></p>
+            </div>
+        </section>
+        <section id="secao-videos" class="videos centralizado index-secao">
+            <div class="div-angle">
+                <i class="fa fa-angle-down fa-angle abertura-div-angle"></i>
+            </div>
+            <div class="div-icon"><i class="fa fa-video-camera text-shadow-inset icone-secao"></i><h2>VIDEOTECA DA SAÚDE</h2></div>
+            <div class="videos-body">
+                    <div class="card-container">
+                        <div class="card-div cards-videos">
+                            <img class="loading conteudo-index" src="/img/loading.svg">
+                        </div>
+                    </div>
+                    <div class="button-div">
+                        <a href="/busca/1?input-busca=&resultadosPorPagina=10&classificacao=video&relacaoTermos=qualquer&ordenacao=maisRecentes&dataDesde=0&dataAte=0"><button>outras produções</button></a>
+                    </div>
+            </div>
+        </section>
+        <section id="secao-fotos" class="fotos centralizado index-secao">
+            <div class="div-angle">
+                <i class="fa fa-angle-down fa-angle abertura-div-angle"></i>
+            </div>
+            <div class="div-icon"><i class="fa fa-instagram text-shadow-inset icone-secao"></i><h2>CCS EM IMAGENS</h2></div>
+            <div class="fotos-body">
+                    <div class="card-container">
+                        <div class="card-div cards-fotos">
+                            <img class="loading conteudo-index" src="/img/loading.svg">
+                        </div>
+                    </div>
+                    <div class="button-div">
+                        <a href="/busca/1?input-busca=&resultadosPorPagina=10&classificacao=foto&relacaoTermos=qualquer&ordenacao=maisRecentes&dataDesde=0&dataAte=0"><button>mais imagens</button></a>
+                    </div>
+            </div>
+        </section>
+        <section id="secao-agenda" class="agenda centralizado index-secao">
+            <div class="div-angle">
+                <i class="fa fa-angle-down fa-angle abertura-div-angle abertura-div-angle-agenda"></i>
+            </div>
+            <div class="div-icon"><i class="fa fa-calendar text-shadow-inset icone-secao"></i><h2>AGENDA</h2></div>
+            {{> agenda}}
+        </section>
+    </div>
+</div>
+<script src="/dist/scripts/index.min.js"></script>
+
+
+{{> footer}}
